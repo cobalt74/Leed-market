@@ -32,7 +32,7 @@ function fleaditlater_plugin_displayEvents(&$myUser){
 								
 									<img src="plugins/fleaditlater/img/read_icon.png">
 						
-								<a title="'.$data['guid'].'" href="'.$data['guid'].'">
+								<a title="'.$data['guid'].'" href="'.$data['guid'].'" target="_blank">
 									'.Functions::truncate($data['title'],40).'
 								</a>		  
 								<button class="right" onclick="fleadItLater('.$data['id'].',\'delete\',this)" style="margin-left:10px;">
