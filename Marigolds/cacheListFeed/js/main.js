@@ -4,7 +4,7 @@ function cacheListFeed_toggle_div(maindiv) {
   
   if(divmenubar.style.display=="none") {
     divmenubar.style.display = "block";
-    Elem_article.style.width="67%";
+	if (Elem_article.style.position!="fixed") { Elem_article.style.width="67%"; }
     document.getElementById('cacheListFeed_divbut_return').parentNode.removeChild(document.getElementById('cacheListFeed_divbut_return'));
   } else {
     divmenubar.style.display = "none";
