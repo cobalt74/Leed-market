@@ -9,6 +9,13 @@ function cacheListFeed_toggle_div(maindiv) {
   } else {
     divmenubar.style.display = "none";
     Elem_article.style.width = "100%";
-    Elem_article.innerHTML = '<div class="cacheListFeed_divbut" id="cacheListFeed_divbut_return" title="Afficher la liste des Feeds" onclick="cacheListFeed_toggle_div(this,\'menuBar\');"><</div>'+Elem_article.innerHTML;    
+	returnButton = document.createElement('div');
+	returnButton.setAttribute("class", "cacheListFeed_divbut");
+	returnButton.setAttribute("id", "cacheListFeed_divbut_return");
+	returnButton.setAttribute("title", "Afficher la liste des Feeds");
+	returnButton.setAttribute("onclick", "cacheListFeed_toggle_div(this,'menuBar');");
+	returnButton.innerHTML = "<";
+	// Insère l'élément sans altérer les événements existants.
+	Elem_article.insertBefore(returnButton, Elem_article.firstChild);
   }
 }
