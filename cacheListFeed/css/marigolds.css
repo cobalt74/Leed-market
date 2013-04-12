@@ -1,0 +1,14 @@
+.cacheListFeed_divbut {
+	background-color: #CECECE;
+	font-size: 10px;
+	font-weight:bold;
+	border: 0px none;
+	border-radius: 5px 5px 5px 5px;
+	color: #ffffff;
+	padding: 4px 5px 6px 5px;
+	line-height: 5px;
+	float: right;
+	text-decoration: none;
+	margin-top:10px;
+	margin-right: 5px;
+}

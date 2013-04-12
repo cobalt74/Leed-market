@@ -50,8 +50,11 @@ function squelette_plugin_action($_,$myUser){
 	*/
 }
 
-//Ajout du css du squelette en en tête de leed
-Plugin::addCss("/css/style.css"); 
+/* Ajout du css du squelette en en tête de leed
+      - par default, s'il existe, le fichier default.css est ajouté
+      - par default, s'il existe, le fichier "nomDuTheme".css est ajouté
+      - si vous souhaitez inclure un fichier css supplémentaire (pour tous les thèmes) */
+//Plugin::addCss("/css/style.css"); 
 
 //Ajout du javascript du squelette au bas de page de leed
 Plugin::addJs("/js/main.js"); 

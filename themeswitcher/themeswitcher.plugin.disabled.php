@@ -9,7 +9,7 @@
 */
 
 function themeswitcher_plugin_AddLink_and_Save(){
-	echo '<li class="pointer" onclick="$(\'#main section\').hide();$(\'#themeSwitcher\').fadeToggle(200);">Changer de thème</li>';
+	echo '<li><a class="toggle" href="#themeSwitcher">Changer de thème</a></li>';
 	if(isset($_POST['themeSelected'])){
 		themeswitcher_plugin_change();
 	}
@@ -18,7 +18,7 @@ function themeswitcher_plugin_AddLink_and_Save(){
 function themeswitcher_plugin_AddForm(){
 	$themes = getThemes();
 	echo '
-	<section id="themeSwitcher">
+	<section class="sectiontThemeSwitcher" id="themeSwitcher" name="themeSwitcher">
 		<form action="settings.php" method="post">
 			<h2>Changer de thème :</h2>
 			<select name="themeSelected" id="themeSelected">';
@@ -27,7 +27,7 @@ function themeswitcher_plugin_AddForm(){
 				}
 			echo '
 			</select>
-			<button type="submit">Enregistrer</button>
+			<button class="buttonThemeSwitcher" type="submit">Enregistrer</button>
 		</form>
 	</section>
 ';

@@ -4,7 +4,7 @@
 @author Idleman <idleman@idleman.fr>
 @link http://blog.idleman.fr
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.0.0
+@version 1.1.0
 @description Le plugin OneSync ajout un bouton à coté de chaque flux afin de synchroniser uniquement ce flux
 */
 
@@ -25,8 +25,7 @@ function OneSync_plugin_SynchronyzeOne(&$_){
 		}
 		
 	}
-
-Plugin::addCss("/css/style.css"); 
+ 
 Plugin::addJs("/js/main.js"); 
 // Ajout de la fonction au Hook situé avant l'affichage des liens de flux
 Plugin::addHook("menu_post_feed_link", "OneSync_plugin_AddButton");  
