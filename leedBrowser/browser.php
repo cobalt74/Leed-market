@@ -16,7 +16,7 @@ try{
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link type="text/css" href="css/style.css" rel="stylesheet" />
+	<link type="text/css" href="css/default.css" rel="stylesheet" />
 </head>
 <body>
 <div id="browser-bar">
