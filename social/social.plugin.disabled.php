@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 2.0.1
+@version 2.1.0
 @description Le plugin Social permet de partager les news avec son réseau social préféré
 */
 
@@ -23,7 +23,6 @@ function Social_plugin_AddButton(&$event){
 }
 
 // Ajout de la fonction au Hook situé avant l'affichage des évenements
-Plugin::addCss("/css/style.css"); 
 Plugin::addJs("/js/main.js");
 Plugin::addHook("event_post_top_options", "Social_plugin_AddButton"); 
 ?>
