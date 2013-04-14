@@ -18,7 +18,7 @@ function themeswitcher_plugin_AddLink_and_Save(){
 function themeswitcher_plugin_AddForm(){
 	$themes = getThemes();
 	echo '
-	<section class="sectiontThemeSwitcher" id="themeSwitcher" name="themeSwitcher">
+	<section class="themeSwitcher" id="themeSwitcher" name="themeSwitcher">
 		<form action="settings.php" method="post">
 			<h2>Changer de thème :</h2>
 			<select name="themeSelected" id="themeSelected">';
