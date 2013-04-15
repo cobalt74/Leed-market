@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.1.0
+@version 1.2.0
 @description Pour être toujours à jour avec Leed. Ce plugin récupère le zip du projet GIT et le dezippe directement sur votre environnement
 */
 
@@ -62,7 +62,7 @@ function unzip_leed($src_file, $dest_dir=false, $create_zip_name_dir=true, $over
 			$file_name = str_replace("Leed-master/", "", $file_name);
         	file_put_contents($file_name, $fstream );
             // Set the rights
-            chmod($file_name, 0775);
+            chmod($file_name, 0755);
             echo "copie: ".$file_name."<br />";
           }
           
