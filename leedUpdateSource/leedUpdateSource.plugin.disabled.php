@@ -62,7 +62,7 @@ function unzip_leed($src_file, $dest_dir=false, $create_zip_name_dir=true, $over
 			$file_name = str_replace("Leed-master/", "", $file_name);
         	file_put_contents($file_name, $fstream );
             // Set the rights
-            chmod($file_name, 0755);
+            chmod($file_name, 0644);
             echo "copie: ".$file_name."<br />";
           }
           
@@ -103,7 +103,7 @@ function create_dirs($path)
       if (!is_dir($directory_path))
       {
         mkdir($directory_path);
-        chmod($directory_path, 0777);
+        chmod($directory_path, 0755);
       }
     }
   }
@@ -119,7 +119,7 @@ function plugin_leedUpdateSource_AddLink(){
 function plugin_leedUpdateSource_AddForm(){
 	echo '<section id="leedUpdateSource" name="leedUpdateSource" class="leedUpdateSource">
 			<h2>Mettre à jour Leed</h2>
-			<li>Récupération des sources (zip) sur le dépôt Git</li>
+			<li>Récupération des sources (zip) sur le dépôt Git (sources de développement)</li>
 			<li>Dézippage sur votre installation</li>
 			<li>Simple et rapide ! :) </li>
 			<br />
