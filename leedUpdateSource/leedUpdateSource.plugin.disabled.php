@@ -60,10 +60,16 @@ function unzip_leed($src_file, $dest_dir=false, $create_zip_name_dir=true, $over
             $fstream = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
 			
 			$file_name = str_replace("Leed-master/", "", $file_name);
-        	file_put_contents($file_name, $fstream );
-            // Set the rights
-            chmod($file_name, 0644);
-            echo "copie: ".$file_name."<br />";
+        	if(file_put_contents($file_name, $fstream )===false)
+        	{
+	            if (is_dir($file_name)){
+	            	echo "répertoire: ".$file_name."<br />";
+	            }else {
+		            echo "erreur copie: ".$file_name."<br />";
+		        }
+            } else {
+        	    echo "copie: ".$file_name."<br />";
+            }
           }
           
           // Close the entry
@@ -103,7 +109,7 @@ function create_dirs($path)
       if (!is_dir($directory_path))
       {
         mkdir($directory_path);
-        chmod($directory_path, 0755);
+        chmod($directory_path, 0775);
       }
     }
   }
@@ -123,12 +129,12 @@ function plugin_leedUpdateSource_AddForm(){
 			<li>Dézippage sur votre installation</li>
 			<li>Simple et rapide ! :) </li>
 			<br />
-			<legend>
-				<b>Attention :</b> ce plugin est utilisé afin de récupérer les corrections de bug.<br />
-				Les plugins ne seront pas touchés<br />
-				En cas de mise à jour de la base de données, reportez vous au <a href="about.php">site web</a> du projet.<br />
-				Bien attendre le retour automatique sur cette page après lancement ...
-			</legend>
+
+			<b>Attention :</b> ce plugin est utilisé afin de récupérer les corrections de bug.
+			<li>Les plugins ne seront pas touchés
+			<li>En cas de mise à jour de la base de données, reportez vous au <a href="about.php">site web</a> du projet
+			<li>Bien attendre le retour automatique sur cette page après lancement ...
+			<li>Dernier conseil : il faut que PHP puisse écrire dans votre répertoire leed.
 			<br />
 			<form action="settings.php#leedUpdateSource" method="post">
 				<input type="hidden" name="plugin_leedUpdateSource" id="plugin_leedUpdateSource" value="1">
