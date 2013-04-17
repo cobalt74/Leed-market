@@ -15,7 +15,7 @@ function Social_plugin_AddButton(&$event){
   echo '<div class="social_group">
           <div class="social_divbut" onclick="social_toggle_div(this,\''.$eventId.'\');">+ Partager</div>
           <div class="social_gdiv" id="'.$eventId.'" style="display:none">
-            <div onclick="openURL(\'https://twitter.com/share?url='.$link.'\');" class="social_div">Tweeter</div> 
+            <div onclick="openURL(\'https://twitter.com/share?url='.$link.'\');" class="social_div">Twitter</div> 
             <div onclick="openURL(\'http://www.facebook.com/share.php?u='.$link.'\');" class="social_div">Facebook</div> 
             <div onclick="openURL(\'https://plus.google.com/share?url='.$link.'&hl=fr\');" class="social_div">Google+</div>
           </div>
