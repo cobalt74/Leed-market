@@ -13,12 +13,14 @@ wiki plugins : http://projet.idleman.fr/leed/?page=Plugins
 
 <b>Liste des plugins officiels de Leed</b>
 * cacheListFeed		- cacher la liste des feed afin de lire les articles en plein écran.
+* DeleteTheCache	- suppression physique des fichiers mis en cache par Leed
 * favicon_IOS		- ajoute une jolie icone sur IOS
 * fleaditlater		- ajoute un bouton permettant de marquer un evenement comme "a lire plus tard"
 * fleedicon_content	- ajoute un favicon à gauche de chaque item lors de la lecture
 * fleexed			- repositionne les menus en position fixed
 * instapaper		- affiche les évenements directement sur instapaper lors du clic sur le titre d'un évenement
 * leedBrowser		- Lors du clic sur un lien d'événement, le site est ouvert dans un navigateur discret avec des boutons : marquer comme lu, favoriser...
+* leedLogSync		- Affichage du dernier fichier de Log généré par la tache planifiée de synchronisation
 * leedUpdateSource	- Leed toujours à jour.
 * oneSync			- ajoute un bouton à coté de chaque flux afin de synchroniser uniquement ce flux
 * search			- effectuer une recherche sur les articles de Leed. Ne perdez plus aucune information !
