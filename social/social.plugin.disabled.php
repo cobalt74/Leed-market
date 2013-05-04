@@ -12,7 +12,7 @@ function Social_plugin_AddButton(&$event){
   $eventId = "social_".$event->getId();
   //$link = $event->getLink();
   
-  $requete = 'SELECT link FROM '.MYSQL_PREFIX.'event WHERE id = '.$event->getId();
+  $requete = 'SELECT link FROM '.$event->getPrefixTable().'event WHERE id = '.$event->getId();
   $query = mysql_query($requete);
   $link = mysql_result($query,0);
   	

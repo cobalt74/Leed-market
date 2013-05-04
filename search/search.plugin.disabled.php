@@ -15,7 +15,7 @@ function search_plugin_AddLink_and_Search(){
 }
 
 // affichage des option de recherche et du formulaire
-function search_plugin_AddForm(){
+function search_plugin_AddForm(&$myUser){
 	echo '<section id="search" name="search" class="search">
 			<h2>Rechercher des articles</h2>
 			<form action="settings.php#search" method="post">
@@ -47,7 +47,7 @@ function search_plugin_AddForm(){
 			</form>';
     if(isset($_POST['plugin_search'])){
         if(strlen($_POST['plugin_search'])>=3){
-			search_plugin_recherche();
+			search_plugin_recherche($myUser);
 		}else{ echo 'Saisir au moins 3 caractères pour lancer la recherche'; }
 	}
 	echo '</section>';
@@ -55,9 +55,9 @@ function search_plugin_AddForm(){
 
 
 // foction de recherche des articles avec affichage du résultat.
-function search_plugin_recherche(){
+function search_plugin_recherche(&$myUser){
 	$requete = 'SELECT id,title,guid,content,description,link,pubdate,unread, favorite
-                FROM '.MYSQL_PREFIX.'event 
+                FROM '.$myUser->getPrefixDatabase().'event 
                 WHERE title like \'%'.$_POST['plugin_search'].'%\'';
 	if ($_POST['search_option']=="1"){
 		$requete = $requete.' OR content like \'%'.$_POST['plugin_search'].'%\'';
@@ -69,28 +69,28 @@ function search_plugin_recherche(){
 		while($data = mysql_fetch_array($query)){
 			echo '<div class=search_article>
 			        <div class="search_article_title">
-			          '.date('d/m/Y à H:i',$data['pubdate']).' - 
-			          <a title="'.$data['guid'].'" href="'.$data['link'].'" target="_blank">
-					     '.$data['title'].'
-				      </a>
-				      <div class="search_buttonbBar">
-				      	<span ';
-				      	if(!$data['unread']){ 
-				      		echo 'class="pointer right readUnreadButton eventRead"'; 
-				      	} 
-				      	else { 
-				      		echo 'class="pointer right readUnreadButton"'; 
-				      	}
-				      	echo 'onclick="search_readUnread(this,'.$data['id'].');">marquer '.(!$data['unread']?'non lu':'lu').'</span>
-				      	<span ';
-				      	if($data['favorite']){ 
-				      		echo 'class="pointer right readUnreadButton eventFavorite"'; 
-				      	} 
-				      	else { 
-				      		echo 'class="pointer right readUnreadButton"'; 
-				      	}
-				      	echo 'onclick="search_favorize(this,'.$data['id'].');">'.(!$data['favorite']?'Favoriser':'Défavoriser').'</span>';
-			echo '</div></div>';
+						<div class="search_buttonbBar">
+							<span ';
+							if(!$data['unread']){ 
+								echo 'class="pointer right readUnreadButton eventRead"'; 
+							} 
+							else { 
+								echo 'class="pointer right readUnreadButton"'; 
+							}
+							echo 'onclick="search_readUnread(this,'.$data['id'].');">marquer '.(!$data['unread']?'non lu':'lu').'</span>
+							<span ';
+							if($data['favorite']){ 
+								echo 'class="pointer right readUnreadButton eventFavorite"'; 
+							} 
+							else { 
+								echo 'class="pointer right readUnreadButton"'; 
+							}
+							echo 'onclick="search_favorize(this,'.$data['id'].');">'.(!$data['favorite']?'Favoriser':'Défavoriser').'</span>';
+			echo '		</div>'.
+						date('d/m/Y à H:i',$data['pubdate']).
+						' - <a title="'.$data['guid'].'" href="'.$data['link'].'" target="_blank">
+					     '.$data['title'].'</a>
+					</div>';
 			if ($_POST['search_show']=="1"){
 				echo '<div class="search_article_content">
 					     '.$data['content'].'

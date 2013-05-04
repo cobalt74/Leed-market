@@ -15,26 +15,25 @@ function leedLogSync_plugin_AddLink(){
 }
 
 // affichage des option de recherche et du formulaire
-function leedLogSync_plugin_AddForm(){
+function leedLogSync_plugin_AddForm(&$myUser){
 	echo '<section id="leedLogSync" name="leedLogSync" class="leedLogSync">
 			<h2>Logs dernière synchronisation</h2>';
 
-	// Ouverture du fichier en lecture seule
-	$handle = fopen('./logs/cron.log', 'r');
-	// Si on a réussi à ouvrir le fichier
-	if ($handle)
-	{
-		// Tant que l'on est pas à la fin du fichier
-		while (!feof($handle))
-		{
-			// On lit la ligne courante
-			$buffer = fgets($handle);
-			// On l'affiche
-			echo $buffer;
-		}
-		// On ferme le fichier
-		fclose($handle);
+	$fileLog = './logs/'.$myUser->getLogin().'.log';
+	if (file_exists($fileLog)){ 
+		print_r(file_get_contents($fileLog)); 
+	} else {
+		echo '<li>Aucun fichier de log présent. </li><li>Fichier attendu: '.$fileLog.'</li>';
 	}
+	
+	$requete = 'SELECT count(1) FROM '.$myUser->getPrefixDatabase().'event';
+  	$query = mysql_query($requete);
+  	$count = mysql_result($query,0);
+  	
+
+	echo '<h2>Actuellement sur votre Leed</h2>';
+  	echo '<li><b>Nombre d\'articles sur Leed : </b>'.$count.'</li>';
+	
 	echo '</section>';
 }
 

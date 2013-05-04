@@ -17,7 +17,9 @@ function fleedicon_content_plugin_getFavicon($feed_id) {
     /**
      * Chemin de l'icone pour ce flux
      */
-    $iconPath = Plugin::path() . 'favicons/' . $feed_id . '.png';
+    $myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+    ($myUser==false)?$login="anonymous":$login=$myUser->getLogin();
+    $iconPath = Plugin::path().'favicons/'.$login.$feed_id.'.png';
 
     /**
      * S'il n'existe pas encore

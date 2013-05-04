@@ -161,8 +161,14 @@ function plugin_leedUpdateSource(){
 	}
 }
 
-// Ajout de la fonction au Hook situé avant l'affichage des évenements
-Plugin::addHook("setting_post_link", "plugin_leedUpdateSource_AddLink");
-Plugin::addHook("setting_post_section", "plugin_leedUpdateSource_AddForm");
+
+$myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+if($myUser!=false) {
+	if ($myUser->getId()==1){
+		// Ajout de la fonction au Hook situé avant l'affichage des évenements
+		Plugin::addHook("setting_post_link", "plugin_leedUpdateSource_AddLink");
+		Plugin::addHook("setting_post_section", "plugin_leedUpdateSource_AddForm");
+	}
+}
 
 ?>

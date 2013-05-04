@@ -1,15 +1,18 @@
 <?php
 session_start();
 require_once('../../MysqlEntity.class.php');
+require_once('../../User.class.php');
 require_once('../../Event.class.php');
 require_once('../../Plugin.class.php');
+$userManager = new User();
 $eventManager = new Event();
+$eventManager->setPrefixTable=$_GET['prefix'];
+
 try{
 	$event = $eventManager->getById($_GET['event']);
 } catch (Exception $e) {
     echo 'Impossible d\'ouvrir l\'évenement : ',  $e->getMessage(), "\n";
 }
-//var_dump($event);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html id="leed-browser" xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
