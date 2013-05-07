@@ -69,7 +69,7 @@ function fleedicon_content_plugin_getFavicon($feed_id) {
     /**
      * Et l'image brute, sans CSS
      */
-    echo '<img src="' . $iconPath . '" width="16" height="16" alt="' . htmlentities($allFeeds['idMap'][$feed_id]['name'], ENT_QUOTES) . '" />';
+    echo '<img src="' . $iconPath . '" width="16" height="16" alt="' . htmlentities(isset($allFeeds['idMap'][$feed_id])?$allFeeds['idMap'][$feed_id]['name']:'...', ENT_QUOTES) . '" />';
 }
 
 /**

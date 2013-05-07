@@ -1,12 +1,5 @@
 <?php
-session_start();
-require_once('../../MysqlEntity.class.php');
-require_once('../../User.class.php');
-require_once('../../Event.class.php');
-require_once('../../Plugin.class.php');
-$userManager = new User();
-$eventManager = new Event();
-$eventManager->setPrefixTable=$_GET['prefix'];
+require_once("../../common.php");
 
 try{
 	$event = $eventManager->getById($_GET['event']);
