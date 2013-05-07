@@ -47,26 +47,31 @@ function clear_folder($folder, $skip_files=array()){
 
 
 function delcache_plugin_setting_link(&$feed){
-echo '<a class="pointer" href="action.php?action=delcache" alt="Synchroniser" title="Vider le cache">Vider le cache</a> ';
+	$myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+	if ($myUser!=false) {
+		if ($myUser->getId()==1){
+			echo '<a class="pointer" href="action.php?action=delcache" alt="Synchroniser" title="Vider le cache">Vider le cache</a> ';
+		}
+	}
 }
 
 function delcache_plugin_action(&$_){
-if ($_['action']=='delcache'){
-$myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
-if($myUser==false) exit('Vous devez vous connecter pour cette action.');
-    clear_folder("cache/");
-header('location: ./index.php');
-echo "<script>alert('le cache a été vidé');</script>";
-}
-
-}
-// Ajout du css du squelette en en tête de leed
-Plugin::addCss("/css/style.css"); 
-
-// Ajout du javascript du squelette au bas de page de leed
-Plugin::addJs("/js/main.js"); 
- 
-// Ajout de la fonction squelette_plugin_action à la page action de leed qui contient tous les traitements qui n'ont pas besoin d'affichage (ex :supprimer un flux, faire un appel ajax etc...)
+	if ($_['action']=='delcache'){
+		$myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
+		if ($myUser!=false) {
+			if ($myUser->getId()==1){
+		    	clear_folder("cache/");
+				header('location: ./index.php');
+				echo "<script>alert('le cache a Ã©tÃ© vidÃ©');</script>";
+			} else {
+				exit('Vous n\'Ãªtes pas administrateur.');
+			} 
+		} else {
+			exit('Vous devez vous connecter pour cette action.');
+		}
+	}
+} 
+// Ajout de la fonction squelette_plugin_action Ã  la page action de leed qui contient tous les traitements qui n'ont pas besoin d'affichage (ex :supprimer un flux, faire un appel ajax etc...)
 Plugin::addHook('setting_post_link', 'delcache_plugin_setting_link'); 
 Plugin::addHook("action_post_case", "delcache_plugin_action"); 
 ?>
