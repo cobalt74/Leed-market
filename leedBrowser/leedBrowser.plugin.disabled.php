@@ -12,7 +12,7 @@
 
 function leedbrowser_plugin_link(&$events){
 	foreach($events as $event){
-		$event->setLink(Plugin::path().'browser.php?event='.$event->getId().'&prefix='.$event->getPrefixTable().'&link='.$event->getLink());
+		$event->setLink(Plugin::path().'browser.php?event='.$event->getId().'&link='.$event->getLink());
 	}
 }
 
