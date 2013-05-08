@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.2.0
+@version 1.3.0
 @description Pour être toujours à jour avec Leed. Ce plugin récupère le zip du projet GIT et le dezippe directement sur votre environnement
 */
 
@@ -137,7 +137,12 @@ function plugin_leedUpdateSource_AddForm(){
 			<li>Dernier conseil : il faut que PHP puisse écrire dans votre répertoire leed.
 			<br />
 			<form action="settings.php#leedUpdateSource" method="post">
-				<input type="hidden" name="plugin_leedUpdateSource" id="plugin_leedUpdateSource" value="1">
+				<input type="hidden" name="plugin_leedUpdateSource" id="plugin_leedUpdateSource" value="1"><br />
+				Sources : 
+				<select name="plugin_leedUpdateSource_source">
+                    <option value="https://github.com/ldleman/Leed/archive/master.zip">Idleman</option>
+                    <option value="https://github.com/cobalt74/Leed/archive/master.zip">Cobalt74</option>
+                </select>
 				<button type="submit">lancer</button>
 			</form>';
     if(isset($_POST['plugin_leedUpdateSource'])){
@@ -148,7 +153,8 @@ function plugin_leedUpdateSource_AddForm(){
 
 function plugin_leedUpdateSource(){
 	//récupération du fichier
-	$lienMasterLeed = 'https://github.com/ldleman/Leed/archive/master.zip';
+	$lienMasterLeed = $_POST['plugin_leedUpdateSource_source'];
+	echo $lienMasterLeed;
 	create_dirs(Plugin::path().'upload/');
 	$fichierCible = './'.Plugin::path().'upload/LeedMaster.zip';
 	if (copy($lienMasterLeed, $fichierCible)){
