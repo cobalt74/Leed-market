@@ -163,7 +163,7 @@ function plugin_leedUpdateSource_AddForm(){
 			<li>Bien attendre le retour automatique sur cette page après lancement ...
 			<li>Dernier conseil : il faut que PHP puisse écrire dans votre répertoire leed.
 			<br />
-			<form action="settings.php#leedUpdateSourcePlugin" method="post">
+			<form action="settings.php#leedUpdateSource" method="post">
 				Sources : 
 				<select name="plugin_leedUpdateSource_sourcePlugin">
                     <option value="https://github.com/ldleman/Leed-market/archive/master.zip">Idleman</option>
