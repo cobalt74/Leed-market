@@ -43,9 +43,9 @@ function unzip_leed($src_file, $dest_dir=false, $create_zip_name_dir=true, $over
         {
           // Create the directory where the zip-entry should be saved (with a "/" at the end)
           $interne_dir = str_replace("Leed-master/", "", substr(zip_entry_name($zip_entry), 0, $pos_last_slash+1));
-          $interne_dir = str_replace("Leed-multi_user/", "", substr(zip_entry_name($zip_entry), 0, $pos_last_slash+1));
-          $interne_dir = str_replace("Leed-market-master/", "", substr(zip_entry_name($zip_entry), 0, $pos_last_slash+1));
-          $interne_dir = str_replace("Leed-market-multi_user/", "", substr(zip_entry_name($zip_entry), 0, $pos_last_slash+1));
+          $interne_dir = str_replace("Leed-multi_user/", "", $interne_dir);
+          $interne_dir = str_replace("Leed-market-master/", "", $interne_dir);
+          $interne_dir = str_replace("Leed-market-multi_user/", "", $interne_dir);
           create_dirs($dest_dir.$interne_dir);
         }
 
@@ -66,18 +66,16 @@ function unzip_leed($src_file, $dest_dir=false, $create_zip_name_dir=true, $over
 			$file_name = str_replace("Leed-multi_user/", "", $file_name);
 			$file_name = str_replace("Leed-market-master/", "", $file_name);
 			$file_name = str_replace("Leed-market-multi_user/", "", $file_name);
-        	if (!is_dir($file_name)) {
-        		if(file_put_contents($file_name, $fstream )===false)
-        		{
-	            	echo "erreur copie: ".$file_name."<br />";
-	            }else {
-		            echo "copie: ".$file_name."<br />";
-		        }
-            } else {
-      	    	echo "répertoire: ".$file_name."<br />";
+        	if (is_dir($file_name)){
+	            	echo "répertoire: ".$file_name."<br />";
+	        } else {
+    	        if(file_put_contents($file_name, $fstream )===false) {
+		            echo "erreur copie: ".$file_name."<br />";
+	            } else {
+    	    	    echo "copie: ".$file_name."<br />";
+            	}
             }
           }
-          
           // Close the entry
           zip_entry_close($zip_entry);
         }       
