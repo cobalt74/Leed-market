@@ -43,6 +43,9 @@ function unzip_leed($src_file, $dest_dir=false, $create_zip_name_dir=true, $over
         {
           // Create the directory where the zip-entry should be saved (with a "/" at the end)
           $interne_dir = str_replace("Leed-master/", "", substr(zip_entry_name($zip_entry), 0, $pos_last_slash+1));
+          $interne_dir = str_replace("Leed-multi_user/", "", substr(zip_entry_name($zip_entry), 0, $pos_last_slash+1));
+          $interne_dir = str_replace("Leed-market-master/", "", substr(zip_entry_name($zip_entry), 0, $pos_last_slash+1));
+          $interne_dir = str_replace("Leed-market-multi_user/", "", substr(zip_entry_name($zip_entry), 0, $pos_last_slash+1));
           create_dirs($dest_dir.$interne_dir);
         }
 
@@ -60,15 +63,18 @@ function unzip_leed($src_file, $dest_dir=false, $create_zip_name_dir=true, $over
             $fstream = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
 			
 			$file_name = str_replace("Leed-master/", "", $file_name);
-        	if(file_put_contents($file_name, $fstream )===false)
-        	{
-	            if (is_dir($file_name)){
-	            	echo "répertoire: ".$file_name."<br />";
+			$file_name = str_replace("Leed-multi_user/", "", $file_name);
+			$file_name = str_replace("Leed-market-master/", "", $file_name);
+			$file_name = str_replace("Leed-market-multi_user/", "", $file_name);
+        	if (!is_dir($file_name)) {
+        		if(file_put_contents($file_name, $fstream )===false)
+        		{
+	            	echo "erreur copie: ".$file_name."<br />";
 	            }else {
-		            echo "erreur copie: ".$file_name."<br />";
+		            echo "copie: ".$file_name."<br />";
 		        }
             } else {
-        	    echo "copie: ".$file_name."<br />";
+      	    	echo "répertoire: ".$file_name."<br />";
             }
           }
           
@@ -137,17 +143,17 @@ function plugin_leedUpdateSource_AddForm(){
 			<li>Dernier conseil : il faut que PHP puisse écrire dans votre répertoire leed.
 			<br />
 			<form action="settings.php#leedUpdateSource" method="post">
-				<input type="hidden" name="plugin_leedUpdateSource" id="plugin_leedUpdateSource" value="1"><br />
 				Sources : 
 				<select name="plugin_leedUpdateSource_source">
                     <option value="https://github.com/ldleman/Leed/archive/master.zip">Idleman</option>
                     <option value="https://github.com/cobalt74/Leed/archive/master.zip">Cobalt74</option>
+                    <option value="https://github.com/cobalt74/Leed/archive/multi_user.zip">Cobalt74 - branche multiuser</option>
                 </select>
 				<button type="submit">lancer</button>
 			</form>
 			<br />
 			';
-	if(isset($_POST['plugin_leedUpdateSource'])){
+	if(isset($_POST['plugin_leedUpdateSource_source'])){
 		plugin_leedUpdateSource();
 	}
 	echo '	<h2>Mettre à jour les plugins de Leed</h2>
@@ -160,7 +166,6 @@ function plugin_leedUpdateSource_AddForm(){
 			<li>Dernier conseil : il faut que PHP puisse écrire dans votre répertoire leed.
 			<br />
 			<form action="settings.php#leedUpdateSourcePlugin" method="post">
-				<input type="hidden" name="plugin_leedUpdateSourcePlugin" id="plugin_leedUpdateSourcePlugin" value="1"><br />
 				Sources : 
 				<select name="plugin_leedUpdateSource_sourcePlugin">
                     <option value="https://github.com/ldleman/Leed-market/archive/master.zip">Idleman</option>
@@ -170,8 +175,8 @@ function plugin_leedUpdateSource_AddForm(){
 				<button type="submit">lancer</button>
 			</form>
 			';
-    if(isset($_POST['plugin_leedUpdateSourcePlugin'])){
-		plugin_leedUpdateSource();
+    if(isset($_POST['plugin_leedUpdateSource_sourcePlugin'])){
+		plugin_leedUpdateSourcePlugin();
 	}
 	echo '</section>';
 }
@@ -194,33 +199,32 @@ function plugin_leedUpdateSource(){
 
 function plugin_leedUpdateSourcePlugin(){
 	//récupération du fichier
-	$lienMasterLeedPlugin = $_POST['plugin_leedUpdateSourcePlugin'];
+	$lienMasterLeedPlugin = $_POST['plugin_leedUpdateSource_sourcePlugin'];
 	echo $lienMasterLeedPlugin;
 	create_dirs(Plugin::path().'upload/');
 	$fichierCible = './'.Plugin::path().'upload/LeedMasterPlugin.zip';
 	if (copy($lienMasterLeedPlugin, $fichierCible)){
 		echo '<h3>Opérations</h3>';
 		echo 'Fichier <a href="'.$lienMasterLeedPlugin.'">'.$lienMasterLeedPlugin.'</a> téléchargé<br /><br />';
-		$retour = unzip_leed($fichierCible,'./plugins',false,true);
-		if ($retour){echo '<b>Opération réalisée avec succès</b>';}else{echo '<b>Opération réalisée avec des erreurs</b>';};
+		$retour = unzip_leed($fichierCible,'./plugins/',false,true);
+		if ($retour){echo '<b>Opération réalisée avec succès</b><br />';}else{echo '<b>Opération réalisée avec des erreurs</b>';};
 	} else {
 		echo 'récupération foireuse du fichier zip';
 	}
 	
 	// si des plugins sont actifs, les fichiers enabled sont a remplacer par les fichiers disabled
 	// parcourir tous les répertoires de plugins
-	$dir    = './plugins';
-	$files = scandir($dir);
-	foreach ($files as $key => $value) {
-		if (!in_array($value,array(".","..", ".htaccess", "@eadir"))) { 
-			if (!is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
-				if(file_exists($value)) {
+	if ($retour) {
+		$dir    = './plugins/';
+		$files = glob($dir.'*/*.plugin.disabled.php');
+		foreach ($files as $value) {
+			if (file_exists($value) && file_exists(str_replace('.plugin.disabled.php', '.plugin.enabled.php', $value))) {
 					rename($value,str_replace('.plugin.disabled.php', '.plugin.enabled.php', $value));
-					echo 'renomage du fichier : '.$value.'<br />';
-				}
+					echo 'renomage du fichier : '.$value.' en '.str_replace('.plugin.disabled.php', '.plugin.enabled.php', $value).'<br />';
 			}
 		}
 	}
+	echo '<b>Toutes les opérations sont terminées. Vos plugins sont à jour</b>';
 }
 
 
