@@ -4,8 +4,8 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.3.0
-@description Pour être toujours à jour avec Leed. Ce plugin récupère le zip du projet GIT et le dezippe directement sur votre environnement
+@version 2.0.0
+@description Pour être toujours à jour avec Leed et ces plugins. Ce plugin récupère le zip du projet GIT et le dezippe directement sur votre environnement
 */
 
 /**
@@ -144,8 +144,33 @@ function plugin_leedUpdateSource_AddForm(){
                     <option value="https://github.com/cobalt74/Leed/archive/master.zip">Cobalt74</option>
                 </select>
 				<button type="submit">lancer</button>
-			</form>';
-    if(isset($_POST['plugin_leedUpdateSource'])){
+			</form>
+			<br />
+			';
+	if(isset($_POST['plugin_leedUpdateSource'])){
+		plugin_leedUpdateSource();
+	}
+	echo '	<h2>Mettre à jour les plugins de Leed</h2>
+			<li>Récupération des sources (zip) sur le dépôt Git (sources de développement)</li>
+			<br />
+			<b>Attention :</b> ce plugin est utilisé afin de récupérer les corrections de bug.
+			<li>Les plugins seront tous mis à jour.
+			<li>En cas de mise à jour de la base de données, reportez vous au <a href="about.php">site web</a> du projet
+			<li>Bien attendre le retour automatique sur cette page après lancement ...
+			<li>Dernier conseil : il faut que PHP puisse écrire dans votre répertoire leed.
+			<br />
+			<form action="settings.php#leedUpdateSourcePlugin" method="post">
+				<input type="hidden" name="plugin_leedUpdateSourcePlugin" id="plugin_leedUpdateSourcePlugin" value="1"><br />
+				Sources : 
+				<select name="plugin_leedUpdateSource_sourcePlugin">
+                    <option value="https://github.com/ldleman/Leed-market/archive/master.zip">Idleman</option>
+                    <option value="https://github.com/cobalt74/Leed-market/archive/master.zip">Cobalt74</option>
+                    <option value="https://github.com/cobalt74/Leed-market/archive/multi_user.zip">Cobalt74 - branche multi</option>
+                </select>
+				<button type="submit">lancer</button>
+			</form>
+			';
+    if(isset($_POST['plugin_leedUpdateSourcePlugin'])){
 		plugin_leedUpdateSource();
 	}
 	echo '</section>';
@@ -164,6 +189,37 @@ function plugin_leedUpdateSource(){
 		if ($retour){echo '<b>Opération réalisée avec succès</b>';}else{echo '<b>Opération réalisée avec des erreurs</b>';};
 	} else {
 		echo 'récupération foireuse du fichier zip';
+	}
+}
+
+function plugin_leedUpdateSourcePlugin(){
+	//récupération du fichier
+	$lienMasterLeedPlugin = $_POST['plugin_leedUpdateSourcePlugin'];
+	echo $lienMasterLeedPlugin;
+	create_dirs(Plugin::path().'upload/');
+	$fichierCible = './'.Plugin::path().'upload/LeedMasterPlugin.zip';
+	if (copy($lienMasterLeedPlugin, $fichierCible)){
+		echo '<h3>Opérations</h3>';
+		echo 'Fichier <a href="'.$lienMasterLeedPlugin.'">'.$lienMasterLeedPlugin.'</a> téléchargé<br /><br />';
+		$retour = unzip_leed($fichierCible,'./plugins',false,true);
+		if ($retour){echo '<b>Opération réalisée avec succès</b>';}else{echo '<b>Opération réalisée avec des erreurs</b>';};
+	} else {
+		echo 'récupération foireuse du fichier zip';
+	}
+	
+	// si des plugins sont actifs, les fichiers enabled sont a remplacer par les fichiers disabled
+	// parcourir tous les répertoires de plugins
+	$dir    = './plugins';
+	$files = scandir($dir);
+	foreach ($files as $key => $value) {
+		if (!in_array($value,array(".","..", ".htaccess", "@eadir"))) { 
+			if (!is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+				if(file_exists($value)) {
+					rename($value,str_replace('.plugin.disabled.php', '.plugin.enabled.php', $value));
+					echo 'renomage du fichier : '.$value.'<br />';
+				}
+			}
+		}
 	}
 }
 
