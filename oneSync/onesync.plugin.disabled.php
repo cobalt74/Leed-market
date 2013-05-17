@@ -4,7 +4,7 @@
 @author Idleman <idleman@idleman.fr>
 @link http://blog.idleman.fr
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 1.1.0
+@version 1.2.0
 @description Le plugin OneSync ajoute un bouton à coté de chaque flux afin de synchroniser uniquement ce flux
 */
 
@@ -19,7 +19,8 @@ function OneSync_plugin_SynchronyzeOne(&$_){
 			if(isset($_['feed']) && $_['feed']!=''){
 				$feedManager = new Feed();
 				$feed = $feedManager->getById($_['feed']);
-				$feed->parse();
+				$syncId = time();
+				$feed->parse($syncId);
 			}
 			header('location: ./index.php');
 		}
