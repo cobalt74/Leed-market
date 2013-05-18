@@ -1,10 +1,10 @@
-function readUnread(element,id){
+function readUnread(element,id, rootpath){
 	
 	
 	if(!$(element).hasClass('eventRead')){
 		$(element).addClass('eventRead').html('Marquer comme non lu');
 		$.ajax({
-					  url: "../../action.php?action=readContent",
+					  url: rootpath+"action.php?action=readContent",
 					  data:{id:id},
 					  success:function(msg){
 					  	if(msg!="") alert('Erreur de lecture : '+msg);
@@ -13,7 +13,7 @@ function readUnread(element,id){
 	}else{
 		$(element).removeClass('eventRead').html('Marquer comme lu');
 				$.ajax({
-					url: "../../action.php?action=unreadContent",
+					url: rootpath+"action.php?action=unreadContent",
 					data:{id:id}
 		});
 			
@@ -22,13 +22,13 @@ function readUnread(element,id){
 }
 
 
-function favorize(element,id){
+function favorize(element,id, rootpath){
 	
 	
 	if(!$(element).hasClass('eventFavorite')){
 		$(element).addClass('eventFavorite').html('Défavoriser');
 		$.ajax({
-					  url: "../../action.php?action=addFavorite",
+					  url: rootpath+"action.php?action=addFavorite",
 					  data:{id:id},
 					  success:function(msg){
 					  	if(msg!="") alert('Erreur de lecture : '+msg);
@@ -37,7 +37,7 @@ function favorize(element,id){
 	}else{
 		$(element).removeClass('eventFavorite').html('Favoriser');
 				$.ajax({
-					url: "../../action.php?action=removeFavorite",
+					url: rootpath+"action.php?action=removeFavorite",
 					data:{id:id}
 		});
 			

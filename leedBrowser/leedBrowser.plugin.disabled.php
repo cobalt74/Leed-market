@@ -4,7 +4,7 @@
 @author Idleman <idleman@idleman.fr>
 @link http://blog.idleman.fr
 @licence GNU/GPL
-@version 1.1.0
+@version 1.1.1
 @description Lors du clic sur un lien d'événement, le site est ouvert dans un navigateur discret qui permet de rester dans Leed et d'effectuer des actions sur le site en cours de consultation (marquer comme lu, favoriser...)
 */
 
