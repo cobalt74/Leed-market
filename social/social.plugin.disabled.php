@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 3.0.0
+@version 3.1.0
 @description Le plugin Social permet de partager les news avec son réseau social préféré (Tweeter, Google+, Facebook, Delicious, Shaarli, Pocket)
 */
 
@@ -24,7 +24,7 @@ function social_plugin_AddButton(&$event){
           <div class="social_divbut" id="maindiv'.$eventId.'" onclick="social_toggle_div(this,\''.$eventId.'\');">+ Partager</div>
         </div>
         <div class="social_gdiv" id="'.$eventId.'" style="display:none">
-            '.($configurationManager->get('plugin_social_tweeter')?'<div onclick="openURL(\'https://twitter.com/share?url='.rawurlencode($link).'\');" class="social_div">Twitter</div>':'').'
+            '.($configurationManager->get('plugin_social_tweeter')?'<div onclick="openURL(\'https://twitter.com/share?url='.rawurlencode($link).'&text='.rawurlencode($title).'\');" class="social_div">Twitter</div>':'').'
             '.($configurationManager->get('plugin_social_googleplus')?'<div onclick="openURL(\'https://plus.google.com/share?url='.rawurlencode($link).'&hl=fr\');" class="social_div">Google+</div>':'').'
             '.($configurationManager->get('plugin_social_facebook')?'<div onclick="openURL(\'http://www.facebook.com/share.php?u='.rawurlencode($link).'\');" class="social_div">Facebook</div>':'').'
             '.($configurationManager->get('plugin_social_delicious')?'<div onclick="openURL(\'http://del.icio.us/post?v=5&noui&jump=close&url='.rawurlencode($link).'&title='.rawurlencode($title).'\');" class="social_div">Delicous</div>':'').'
