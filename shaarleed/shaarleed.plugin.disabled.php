@@ -13,9 +13,9 @@
 function shaarleed_plugin_button(&$event){
 	$configurationManager = new Configuration();
 	$configurationManager->getAll();
-	$shareOption = ($configurationManager->get('plugin_shaarli')=='1'?$configurationManager->get('plugin_shaarli_link'):false);
+	$shareOption = $configurationManager->get('plugin_shaarli_link');
 	echo '
-	<a title="partager sur shaarli" target="_blank" href="'.$shareOption.'/?post='.rawurlencode($event->getLink()).'&title='.$event->getTitle().'&amp;source=bookmarklet">Shaare!</a>
+	<a title="partager sur shaarli" target="_blank" href="'.$shareOption.'?post='.rawurlencode($event->getLink()).'&title='.$event->getTitle().'&amp;source=bookmarklet">Shaare!</a>
 	';
 }
 
