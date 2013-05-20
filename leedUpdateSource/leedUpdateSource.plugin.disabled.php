@@ -144,8 +144,7 @@ function plugin_leedUpdateSource_AddForm(){
 				Sources : 
 				<select name="plugin_leedUpdateSource_source">
                     <option value="https://github.com/ldleman/Leed/archive/master.zip">Idleman</option>
-                    <option value="https://github.com/cobalt74/Leed/archive/master.zip">Cobalt74</option>
-                    <option value="https://github.com/cobalt74/Leed/archive/multi_user.zip">Cobalt74 - branche multiuser</option>
+                    <option value="https://github.com/cobalt74/Leed/archive/multi_user.zip">Cobalt74 - Multi User</option>
                 </select>
 				<button type="submit">lancer</button>
 			</form>
@@ -167,8 +166,7 @@ function plugin_leedUpdateSource_AddForm(){
 				Sources : 
 				<select name="plugin_leedUpdateSource_sourcePlugin">
                     <option value="https://github.com/ldleman/Leed-market/archive/master.zip">Idleman</option>
-                    <option value="https://github.com/cobalt74/Leed-market/archive/master.zip">Cobalt74</option>
-                    <option value="https://github.com/cobalt74/Leed-market/archive/multi_user.zip">Cobalt74 - branche multi</option>
+                    <option value="https://github.com/cobalt74/Leed-market/archive/multi_user.zip">Cobalt74 - Multi User</option>
                 </select>
 				<button type="submit">lancer</button>
 			</form>

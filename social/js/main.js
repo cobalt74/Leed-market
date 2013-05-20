@@ -5,7 +5,9 @@ function openURL(url){
 
 function social_toggle_div(maindiv, id) {
   var div = document.getElementById(id);
+  
   if(div.style.display=="none") {
+	div.style.left=maindiv.parentNode.offsetLeft+3+'px';
     div.style.display = "block";
     maindiv.innerHTML = "- Partager";
   } else {
@@ -13,3 +15,4 @@ function social_toggle_div(maindiv, id) {
     maindiv.innerHTML = "+ Partager";
   }
 }
+
