@@ -29,6 +29,9 @@
     border-radius: 30px 30px 30px 30px;
     padding: 0px 9px;
     border-radius: 5px 5px 5px 5px;
+    border: 1px black solid;
+    width:70px;
+    z-index:2;
 }
 
 .social_div {
@@ -41,4 +44,5 @@
     cursor: pointer;
     margin-right: 5px;
     float: left;
+    z-index:1;
 }
