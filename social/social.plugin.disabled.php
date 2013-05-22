@@ -4,8 +4,8 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 3.1.0
-@description Le plugin Social permet de partager les news avec son réseau social préféré (Tweeter, Google+, Facebook, Delicious, Shaarli, Pocket)
+@version 3.2.0
+@description Le plugin Social permet de partager les news avec son réseau social préféré (Tweeter, Google+, Facebook, Delicious, Shaarli, Pocket, Instapaper)
 */
 
 function social_plugin_AddButton(&$event){
@@ -30,6 +30,7 @@ function social_plugin_AddButton(&$event){
             '.($configurationManager->get('plugin_social_delicious')?'<div onclick="openURL(\'http://del.icio.us/post?v=5&noui&jump=close&url='.rawurlencode($link).'&title='.rawurlencode($title).'\');" class="social_div">Delicous</div>':'').'
             '.($configurationManager->get('plugin_social_shaarli')?'<div onclick="openURL(\''.$configurationManager->get('plugin_social_shaarli_link').'?post='.rawurlencode($link).'&title='.rawurlencode($title).'&amp;source=bookmarklet\');" class="social_div">Shaare</div>':'').'
             '.($configurationManager->get('plugin_social_pocket')?'<div onclick="openURL(\'https://getpocket.com/edit?url='.rawurlencode($link).'&title='.rawurlencode($title).'\');" class="social_div">Pocket</div>':'').'
+            '.($configurationManager->get('plugin_social_instapaper')?'<div onclick="openURL(\'http://www.instapaper.com/text?u='.rawurlencode($link).'\');" class="social_div">Instapaper</div>':'').'
         </div>';
 }
 
@@ -72,6 +73,11 @@ function social_plugin_setting_bloc(&$myUser){
 		<input type="radio" '.($configurationManager->get('plugin_social_pocket')?'checked="checked"':'').' value=1 id="socialPocketYes" name="socialPocket"><label>Oui</label>
 		<input type="radio" '.($configurationManager->get('plugin_social_pocket')?'':'checked="checked"').' value=0 id="socialPocketNo" name="socialPocket"><label>Non</label>
 		</p>
+		<p>
+		<label for="social_instapaper">Partage sur Instapaper :</label> 
+		<input type="radio" '.($configurationManager->get('plugin_social_instapaper')?'checked="checked"':'').' value=1 id="socialInstapaperYes" name="socialInstapaper"><label>Oui</label>
+		<input type="radio" '.($configurationManager->get('plugin_social_instapaper')?'':'checked="checked"').' value=0 id="socialInstapaperNo" name="socialInstapaper"><label>Non</label>
+		</p>
 		</section>
 
 		<section class="preferenceBloc">
@@ -108,6 +114,7 @@ function social_plugin_update($_){
 		$configurationManager->put('plugin_social_shaarli',$_['socialShaarli']);
 		$configurationManager->put('plugin_social_shaarli_link',$_['plugin_social_shaarli_link']);
 		$configurationManager->put('plugin_social_pocket',$_['socialPocket']);
+		$configurationManager->put('plugin_social_instapaper',$_['socialInstapaper']);
 		$_SESSION['configuration'] = null;
 
 		header('location: settings.php#socialBloc');
