@@ -4,8 +4,8 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 3.2.0
-@description Le plugin Social permet de partager les news avec son réseau social préféré (Tweeter, Google+, Facebook, Delicious, Shaarli, Pocket, Instapaper)
+@version 3.2.1
+@description Le plugin Social permet de partager les news avec son réseau social préféré (Twitter, Google+, Facebook, Delicious, Shaarli, Pocket, Instapaper)
 */
 
 function social_plugin_AddButton(&$event){
@@ -24,7 +24,7 @@ function social_plugin_AddButton(&$event){
           <div class="social_divbut" id="maindiv'.$eventId.'" onclick="social_toggle_div(this,\''.$eventId.'\');">+ Partager</div>
         </div>
         <div class="social_gdiv" id="'.$eventId.'" style="display:none">
-            '.($configurationManager->get('plugin_social_tweeter')?'<div onclick="openURL(\'https://twitter.com/share?url='.rawurlencode($link).'&text='.rawurlencode($title).'\');" class="social_div">Twitter</div>':'').'
+            '.($configurationManager->get('plugin_social_twitter')?'<div onclick="openURL(\'https://twitter.com/share?url='.rawurlencode($link).'&text='.rawurlencode($title).'\');" class="social_div">Twitter</div>':'').'
             '.($configurationManager->get('plugin_social_googleplus')?'<div onclick="openURL(\'https://plus.google.com/share?url='.rawurlencode($link).'&hl=fr\');" class="social_div">Google+</div>':'').'
             '.($configurationManager->get('plugin_social_facebook')?'<div onclick="openURL(\'http://www.facebook.com/share.php?u='.rawurlencode($link).'\');" class="social_div">Facebook</div>':'').'
             '.($configurationManager->get('plugin_social_delicious')?'<div onclick="openURL(\'http://del.icio.us/post?v=5&noui&jump=close&url='.rawurlencode($link).'&title='.rawurlencode($title).'\');" class="social_div">Delicous</div>':'').'
@@ -49,9 +49,9 @@ function social_plugin_setting_bloc(&$myUser){
 		<section class="preferenceBloc">
 		<h3>Activation des boutons de partage</h3>
 		<p>
-		<label for="social_tweeter_link">Partage sur Tweeter :</label> 
-		<input type="radio" '.($configurationManager->get('plugin_social_tweeter')?'checked="checked"':'').' value=1 id="socialTweeterYes" name="socialTweeter"><label>Oui</label>
-		<input type="radio" '.($configurationManager->get('plugin_social_tweeter')?'':'checked="checked"').' value=0 id="socialTweeterNo" name="socialTweeter"><label>Non</label>
+		<label for="social_twitter_link">Partage sur Twitter :</label> 
+		<input type="radio" '.($configurationManager->get('plugin_social_twitter')?'checked="checked"':'').' value=1 id="socialTwitterYes" name="socialTwitter"><label>Oui</label>
+		<input type="radio" '.($configurationManager->get('plugin_social_twitter')?'':'checked="checked"').' value=0 id="socialTwitterNo" name="socialTwitter"><label>Non</label>
 		</p>
 		<p>
 		<label for="social_googleplus_link">Partage sur Google+ :</label>
@@ -107,7 +107,7 @@ function social_plugin_update($_){
 	$configurationManager->getAll();
 
 	if($_['action']=='social_update'){
-		$configurationManager->put('plugin_social_tweeter',$_['socialTweeter']);
+		$configurationManager->put('plugin_social_twitter',$_['socialTwitter']);
 		$configurationManager->put('plugin_social_googleplus',$_['socialGooglePlus']);
 		$configurationManager->put('plugin_social_facebook',$_['socialFacebook']);
 		$configurationManager->put('plugin_social_delicious',$_['socialDelicious']);
