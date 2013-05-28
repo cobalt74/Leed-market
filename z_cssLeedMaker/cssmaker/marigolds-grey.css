@@ -1,0 +1,67 @@
+#header-container{ border-bottom: 5px solid #787878; }
+#footer-container{ position: absolute; width: 100%; bottom: 0; border-top:    5px solid #787878; }
+#main aside      { border-top:    5px solid #787878; }
+
+nav a{
+	border-bottom: 5px solid #787878;
+	background: #787878;
+}
+
+nav a:hover{
+		border-bottom: 5px solid #f8f8f8;
+}
+	
+#header-container {
+	border-bottom: 5px solid #787878;
+}
+
+
+::-moz-selection { background: #787878; color: #fff; text-shadow: none; }
+::selection      { background: #787878; color: #fff; text-shadow: none; }
+
+code{
+	color:#787878;
+}
+
+#main button, .loginBloc button,.button,.readUnreadButton{
+	background-color:#787878;
+}
+
+#main aside a.unreadForFolder,#main aside a.readFolder{
+	background-color:#787878;
+}
+
+#main article div.articleContent .enclosure{
+	color:#787878;
+}
+
+#main article div.articleContent .enclosure a{	
+	color:#787878
+}
+
+#main article section.eventSelected,
+.settings article > section{
+	border-top: 3px solid #787878;
+}
+
+#main article section a,#main article a{
+	color:#787878;
+}
+
+#main button, .loginBloc button, .button, .readUnreadButton {
+	background-color: #787878;
+}
+
+.sync a{
+	color:#787878;
+}
+
+.social_group {
+	background-color: #787878;
+}
+.social_gdiv {
+	background-color: #787878;
+}
+.fleaditLaterButton {
+	background-color: #787878;
+}

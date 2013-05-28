@@ -23,11 +23,13 @@ wiki plugins : http://projet.idleman.fr/leed/?page=Plugins
 * leedLogSync		- Affichage du dernier fichier de Log généré par la tache planifiée de synchronisation
 * leedUpdateSource	- Leed toujours à jour.
 * oneSync			- ajoute un bouton à coté de chaque flux afin de synchroniser uniquement ce flux
+* rssmaker          - Créer un flux rss par dossiers de flux. Permet de créer de nouveaux flux pour une consultation plus synthétique
 * search			- effectuer une recherche sur les articles de Leed. Ne perdez plus aucune information !
 * shaarleed			- partage un lien d'evenement directement sur son script shaarli
 * social			- partage les articles avec son réseau social préféré (Facebook / Tweeter / Google+)
 * squelette			- plugin d'exemple pour les créateurs de nouveaux plugins Leed
 * themeswitcher		- changer de thème via la page de gestion
+* z_cssLeedMaker    - Ce plugin permet de contruire son propre thème en ajoutant du css.
 
 
 <b>ASTUCE :</b> Ajouter le dépot Git "Leed-market" en sous-module du dépot Git "Leed"
