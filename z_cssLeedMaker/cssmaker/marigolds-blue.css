@@ -1,0 +1,67 @@
+#header-container{ border-bottom: 5px solid #2436be; }
+#footer-container{ position: absolute; width: 100%; bottom: 0; border-top:    5px solid #2436be; }
+#main aside      { border-top:    5px solid #2436be; }
+
+nav a{
+	border-bottom: 5px solid #2436be;
+	background: #2436be;
+}
+
+nav a:hover{
+		border-bottom: 5px solid #c1c6ec;
+}
+	
+#header-container {
+	border-bottom: 5px solid #2436be;
+}
+
+
+::-moz-selection { background: #2436be; color: #fff; text-shadow: none; }
+::selection      { background: #2436be; color: #fff; text-shadow: none; }
+
+code{
+	color:#2436be;
+}
+
+#main button, .loginBloc button,.button,.readUnreadButton{
+	background-color:#2436be;
+}
+
+#main aside a.unreadForFolder,#main aside a.readFolder{
+	background-color:#2436be;
+}
+
+#main article div.articleContent .enclosure{
+	color:#2436be;
+}
+
+#main article div.articleContent .enclosure a{	
+	color:#2436be
+}
+
+#main article section.eventSelected,
+.settings article > section{
+	border-top: 3px solid #2436be;
+}
+
+#main article section a,#main article a{
+	color:#2436be;
+}
+
+#main button, .loginBloc button, .button, .readUnreadButton {
+	background-color: #2436be;
+}
+
+.sync a{
+	color:#2436be;
+}
+
+.social_group {
+	background-color: #2436be;
+}
+.social_gdiv {
+	background-color: #2436be;
+}
+.fleaditLaterButton {
+	background-color: #2436be;
+}
