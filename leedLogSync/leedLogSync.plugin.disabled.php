@@ -36,7 +36,7 @@ function leedLogSync_plugin_AddForm(&$myUser){
 			echo '<form action="settings.php#leedLogSync" method="post">';
 			echo '  <select name="plugin_leedLogSync_file">';
 					foreach ($files as $key => $value) {
-						if (!in_array($value,array(".","..", ".htaccess", "@eadir"))) { 
+						if (!in_array($value,array(".","..", ".htaccess", "@eadir", ".DS_Store"))) { 
 							 if (!is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
 								if (isset($_POST['plugin_leedLogSync_file'])) {
 									if ($_POST['plugin_leedLogSync_file']==$value) {
@@ -61,15 +61,16 @@ function leedLogSync_plugin_AddForm(&$myUser){
 	}
 	
 	if (!isset($fileLog)) { $fileLog = $dir.'/'.$myUser->getLogin().'.log'; }
-
-	echo 'Affichage du fichier : '.$fileLog;
+	if (isset($_POST['plugin_leedLogSync_file'])) {
+		echo 'Affichage du fichier : '.$fileLog;
 	
-	if (file_exists($fileLog)){ 
-		print_r(file_get_contents($fileLog)); 
-	} else {
-		echo '<li>Aucun fichier de log présent. </li><li>Fichier attendu: '.$fileLog.'</li>';
+		if (file_exists($fileLog)){ 
+			print_r(file_get_contents($fileLog)); 
+		} else {
+			echo '<li>Aucun fichier de log présent. </li><li>Fichier attendu: '.$fileLog.'</li>';
+		}
 	}
-	
+
 	$requete = 'SELECT count(1) FROM '.$myUser->getPrefixDatabase().'event';
   	$query = mysql_query($requete);
   	$count = mysql_result($query,0);
