@@ -4,7 +4,7 @@
 @author Idleman <idleman@idleman.fr>
 @link http://blog.idleman.fr
 @licence WTFPL
-@version 1.0.0
+@version 2.0.0
 @description Le plugin Shaarleed permet de partager un lien d'evenement directement sur son script <a target="_blank" href="http://sebsauvage.net/wiki/doku.php?id=php:shaarli">shaarli</a>
 */
 
@@ -14,8 +14,15 @@ function shaarleed_plugin_button(&$event){
 	$configurationManager = new Configuration();
 	$configurationManager->getAll();
 	$shareOption = $configurationManager->get('plugin_shaarli_link');
+	
+	$requete = 'SELECT link, title FROM '.MYSQL_PREFIX.'event WHERE id = '.$event->getId();
+	$query = mysql_query($requete);
+	$result = mysql_fetch_row($query);
+	$link = $result[0];
+	$title = $result[1];
+  
 	echo '
-	<a title="partager sur shaarli" target="_blank" href="'.$shareOption.'?post='.rawurlencode($event->getLink()).'&title='.$event->getTitle().'&amp;source=bookmarklet">Shaare!</a>
+	<a title="partager sur shaarli" target="_blank" href="'.$shareOption.'?post='.rawurlencode($link).'&title='.$title.'&amp;source=bookmarklet">Shaare!</a>
 	';
 }
 
