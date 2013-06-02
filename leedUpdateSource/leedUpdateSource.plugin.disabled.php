@@ -46,6 +46,7 @@ function unzip_leed($src_file, $dest_dir=false, $create_zip_name_dir=true, $over
           $interne_dir = str_replace("Leed-multi_user/", "", $interne_dir);
           $interne_dir = str_replace("Leed-market-master/", "", $interne_dir);
           $interne_dir = str_replace("Leed-market-multi_user/", "", $interne_dir);
+          $interne_dir = str_replace("Leed-dev/", "", $interne_dir);
           create_dirs($dest_dir.$interne_dir);
         }
 
@@ -66,6 +67,7 @@ function unzip_leed($src_file, $dest_dir=false, $create_zip_name_dir=true, $over
 			$file_name = str_replace("Leed-multi_user/", "", $file_name);
 			$file_name = str_replace("Leed-market-master/", "", $file_name);
 			$file_name = str_replace("Leed-market-multi_user/", "", $file_name);
+			$file_name = str_replace("Leed-dev/", "", $file_name);
         	if (is_dir($file_name)){
 	            	echo "répertoire: ".$file_name."<br />";
 	        } else {
@@ -143,7 +145,8 @@ function plugin_leedUpdateSource_AddForm(){
 			<form action="settings.php#leedUpdateSource" method="post">
 				Sources : 
 				<select name="plugin_leedUpdateSource_source">
-                    <option value="https://github.com/ldleman/Leed/archive/master.zip">Idleman</option>
+                    <option value="https://github.com/ldleman/Leed/archive/master.zip">Idleman - stable</option>
+                    <option value="https://github.com/ldleman/Leed/archive/dev.zip">Idleman - en développement</option>
                     <option value="https://github.com/cobalt74/Leed/archive/multi_user.zip">Cobalt74 - Multi User</option>
                 </select>
 				<button type="submit">lancer</button>
