@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 2.0.0
+@version 2.1.0
 @description Pour être toujours à jour avec Leed et ces plugins. Ce plugin récupère le zip du projet GIT et le dezippe directement sur votre environnement
 */
 
@@ -129,6 +129,9 @@ function plugin_leedUpdateSource_AddLink(){
 
 // affichage des option de recherche et du formulaire
 function plugin_leedUpdateSource_AddForm(){
+	$configurationManager = new Configuration();
+	$configurationManager->getAll();
+	
 	echo '<section id="leedUpdateSource" name="leedUpdateSource" class="leedUpdateSource">
 			<h2>Mettre à jour Leed</h2>
 			<li>Récupération des sources (zip) sur le dépôt Git (sources de développement)</li>
@@ -145,15 +148,16 @@ function plugin_leedUpdateSource_AddForm(){
 			<form action="settings.php#leedUpdateSource" method="post">
 				Sources : 
 				<select name="plugin_leedUpdateSource_source">
-                    <option value="https://github.com/ldleman/Leed/archive/master.zip">Idleman - stable</option>
-                    <option value="https://github.com/ldleman/Leed/archive/dev.zip">Idleman - en développement</option>
-                    <option value="https://github.com/cobalt74/Leed/archive/multi_user.zip">Cobalt74 - Multi User</option>
+                    <option '.($configurationManager->get('plugin_leedUpdateSource_source')=='https://github.com/ldleman/Leed/archive/master.zip'?'selected="selected"':'').' value="https://github.com/ldleman/Leed/archive/master.zip">Idleman - stable</option>
+                    <option '.($configurationManager->get('plugin_leedUpdateSource_source')=='https://github.com/ldleman/Leed/archive/dev.zip'?'selected="selected"':'').' value="https://github.com/ldleman/Leed/archive/dev.zip">Idleman - en développement</option>
+                    <option '.($configurationManager->get('plugin_leedUpdateSource_source')=='https://github.com/cobalt74/Leed/archive/multi_user.zip'?'selected="selected"':'').' value="https://github.com/cobalt74/Leed/archive/multi_user.zip">Cobalt74 - Multi User</option>
                 </select>
 				<button type="submit">lancer</button>
 			</form>
 			<br />
 			';
 	if(isset($_POST['plugin_leedUpdateSource_source'])){
+		$configurationManager->put('plugin_leedUpdateSource_source',$_POST['plugin_leedUpdateSource_source']);
 		plugin_leedUpdateSource();
 	}
 	echo '	<h2>Mettre à jour les plugins de Leed</h2>
@@ -168,13 +172,14 @@ function plugin_leedUpdateSource_AddForm(){
 			<form action="settings.php#leedUpdateSource" method="post">
 				Sources : 
 				<select name="plugin_leedUpdateSource_sourcePlugin">
-                    <option value="https://github.com/ldleman/Leed-market/archive/master.zip">Idleman</option>
-                    <option value="https://github.com/cobalt74/Leed-market/archive/multi_user.zip">Cobalt74 - Multi User</option>
+                    <option '.($configurationManager->get('plugin_leedUpdateSource_sourcePlugin')=='https://github.com/ldleman/Leed-market/archive/master.zip'?'selected="selected"':'').' value="https://github.com/ldleman/Leed-market/archive/master.zip">Idleman</option>
+                    <option '.($configurationManager->get('plugin_leedUpdateSource_sourcePlugin')=='https://github.com/cobalt74/Leed-market/archive/multi_user.zip'?'selected="selected"':'').' value="https://github.com/cobalt74/Leed-market/archive/multi_user.zip">Cobalt74 - Multi User</option>
                 </select>
 				<button type="submit">lancer</button>
 			</form>
 			';
     if(isset($_POST['plugin_leedUpdateSource_sourcePlugin'])){
+		$configurationManager->put('plugin_leedUpdateSource_source',$_POST['plugin_leedUpdateSource_sourcePlugin']);
 		plugin_leedUpdateSourcePlugin();
 	}
 	echo '</section>';
