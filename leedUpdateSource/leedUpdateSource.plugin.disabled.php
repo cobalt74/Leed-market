@@ -179,7 +179,7 @@ function plugin_leedUpdateSource_AddForm(){
 			</form>
 			';
     if(isset($_POST['plugin_leedUpdateSource_sourcePlugin'])){
-		$configurationManager->put('plugin_leedUpdateSource_source',$_POST['plugin_leedUpdateSource_sourcePlugin']);
+		$configurationManager->put('plugin_leedUpdateSource_sourcePlugin',$_POST['plugin_leedUpdateSource_sourcePlugin']);
 		plugin_leedUpdateSourcePlugin();
 	}
 	echo '</section>';
