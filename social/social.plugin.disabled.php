@@ -80,7 +80,7 @@ function social_plugin_setting_bloc(&$myUser){
 		<input type="radio" '.($configurationManager->get('plugin_social_instapaper')?'':'checked="checked"').' value=0 id="socialInstapaperNo" name="socialInstapaper"><label>Non</label>
 		</p>
 		<p>
-		<label for="social_instapaper">Partage par Mail :</label> 
+		<label for="social_mail">Partage par Mail :</label> 
 		<input type="radio" '.($configurationManager->get('plugin_social_mail')?'checked="checked"':'').' value=1 id="socialMailYes" name="socialMail"><label>Oui</label>
 		<input type="radio" '.($configurationManager->get('plugin_social_mail')?'':'checked="checked"').' value=0 id="socialMailNo" name="socialMail"><label>Non</label>
 		</p>
