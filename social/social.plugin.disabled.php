@@ -31,6 +31,7 @@ function social_plugin_AddButton(&$event){
             '.($configurationManager->get('plugin_social_shaarli')?'<div onclick="openURL(\''.$configurationManager->get('plugin_social_shaarli_link').'?post='.rawurlencode($link).'&title='.rawurlencode($title).'&amp;source=bookmarklet\');" class="social_div">Shaare</div>':'').'
             '.($configurationManager->get('plugin_social_pocket')?'<div onclick="openURL(\'https://getpocket.com/edit?url='.rawurlencode($link).'&title='.rawurlencode($title).'\');" class="social_div">Pocket</div>':'').'
             '.($configurationManager->get('plugin_social_instapaper')?'<div onclick="openURL(\'http://www.instapaper.com/text?u='.rawurlencode($link).'\');" class="social_div">Instapaper</div>':'').'
+            '.($configurationManager->get('plugin_social_mail')?'<div onclick="openURL(\'mailto:?subject='.rawurlencode($title).'&body='.rawurlencode($link).'');" class="social_div">Instapaper</div>':'').'
         </div>';
 }
 
@@ -78,6 +79,11 @@ function social_plugin_setting_bloc(&$myUser){
 		<input type="radio" '.($configurationManager->get('plugin_social_instapaper')?'checked="checked"':'').' value=1 id="socialInstapaperYes" name="socialInstapaper"><label>Oui</label>
 		<input type="radio" '.($configurationManager->get('plugin_social_instapaper')?'':'checked="checked"').' value=0 id="socialInstapaperNo" name="socialInstapaper"><label>Non</label>
 		</p>
+		<p>
+		<label for="social_instapaper">Partage par Mail :</label> 
+		<input type="radio" '.($configurationManager->get('plugin_social_mail')?'checked="checked"':'').' value=1 id="socialMailYes" name="socialMail"><label>Oui</label>
+		<input type="radio" '.($configurationManager->get('plugin_social_mail')?'':'checked="checked"').' value=0 id="socialMailNo" name="socialMail"><label>Non</label>
+		</p>
 		</section>
 
 		<section class="preferenceBloc">
@@ -115,6 +121,7 @@ function social_plugin_update($_){
 		$configurationManager->put('plugin_social_shaarli_link',$_['plugin_social_shaarli_link']);
 		$configurationManager->put('plugin_social_pocket',$_['socialPocket']);
 		$configurationManager->put('plugin_social_instapaper',$_['socialInstapaper']);
+		$configurationManager->put('plugin_social_mail',$_['socialMail']);
 		$_SESSION['configuration'] = null;
 
 		header('location: settings.php#socialBloc');
