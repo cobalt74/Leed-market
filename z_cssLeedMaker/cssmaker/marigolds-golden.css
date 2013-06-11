@@ -1,0 +1,143 @@
+/*
+ @nom: marigolds-golden.css
+ @auteur: Forty-Six
+ @description: Stylesheet for the Cobalt74's "CSS Leed Maker" Plugin
+*/
+
+body {
+	background-color: #222;
+}
+
+#header-container{
+	border-bottom: 5px solid #937B3A;
+}
+#footer-container{
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	border-top: 5px solid #937B3A;
+}
+
+#main aside {
+	border-top: 5px solid #937B3A;
+}
+
+nav a{
+	border-bottom: 5px solid #937B3A;
+	background: #937B3A;
+}
+
+nav a:hover{
+	border-bottom: 5px solid #FFCC46;
+}
+	
+#header-container {
+	border-bottom: 5px solid #937B3A;
+}
+
+
+::-moz-selection {
+	background: #937B3A;
+	color: #fff;
+	text-shadow: none;
+}
+::selection {
+	background: #937B3A;
+	color: #fff;
+	text-shadow: none;
+}
+
+code {
+	color:#937B3A;
+}
+
+#main button, .loginBloc button,.button,.readUnreadButton {
+	background-color:#937B3A;
+}
+
+#main aside a.unreadForFolder,#main aside a.readFolder {
+	background-color:#937B3A;
+}
+
+#main article div.articleContent .enclosure {
+	color:#937B3A;
+}
+
+#main article div.articleContent .enclosure a {	
+	color:#937B3A;
+}
+
+#main article section.eventSelected, .settings article > section {
+	border-top: 3px solid #937B3A;
+}
+
+#main article section a, #main article a {
+	color:#937B3A;
+}
+
+#main article section.eventHightLighted h2.articleTitle a, #main article section h2.articleTitle a , .preferenceBloc h3 {
+    color: #999999;
+}
+ 
+#main article div.articleContent {
+margin: 10px 0px 0px 0px;
+}
+
+#main article section a:hover, #main article a:hover {
+color: #FFCC46;
+}
+
+#main article a.goTopButton {
+    background-color: #937B3A;
+}
+
+#main article header.articleHead {
+    background-color: #464646;
+}
+
+#main button, .loginBloc button, .button, .readUnreadButton {
+	background-color: #937B3A;
+}
+.manageBloc {
+	border: solid 3px #937B3A;
+}
+
+#main article section.eventSelected, .settings article > section {
+    border-top: 3px solid #937B3A;
+	color: #999;
+}
+
+#main article section.eventHightLighted {
+	color: #AAAAAA;
+	background-color: #333;
+
+}
+
+#main article section.eventRead, #main article section.eventHightLighted.eventRead {
+    background-color: #333;
+}
+#main article section.eventHightLighted h2.articleTitle, #main article section h2.articleTitle, .preferenceBloc h3 {
+	color: #aaaaaa;
+}
+
+.sync a {
+	color:#937B3A;
+}
+
+.social_group {
+	background-color: #937B3A;
+}
+.social_gdiv {
+	background-color: #937B3A;
+}
+.fleaditLaterButton {
+	background-color: #937B3A;
+}
+
+.FS_toggleEventContent_Button {
+    background-color: #937B3A;
+}
+
+.cacheListFeed_divbut, #cacheListFeed_divbut_return {
+	cursor:pointer;
+}
