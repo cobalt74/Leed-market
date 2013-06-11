@@ -4,107 +4,81 @@
  @description: Stylesheet for the Cobalt74's "CSS Leed Maker" Plugin
 */
 
-body {
-	background-color: #222;
-}
+body { background-color: #222; }
 
-#header-container{
-	border-bottom: 5px solid #937B3A;
-}
+h1, h2, h3 { color: #CFB53B }
+
+#header-container{ border-bottom: 5px solid #B1983B; }
+
 #footer-container{
 	position: absolute;
 	width: 100%;
 	bottom: 0;
-	border-top: 5px solid #937B3A;
+	border-top: 5px solid #B1983B;
 }
 
-#main aside {
-	border-top: 5px solid #937B3A;
-}
+#main { color: #AAA; }
+
+#main aside { border-top: 5px solid #B1983B; }
 
 nav a{
-	border-bottom: 5px solid #937B3A;
-	background: #937B3A;
+	border-bottom: 5px solid #B1983B;
+	background: #B1983B;
 }
 
-nav a:hover{
-	border-bottom: 5px solid #FFCC46;
-}
+nav a:hover{ border-bottom: 5px solid #CFB53B; }
 	
-#header-container {
-	border-bottom: 5px solid #937B3A;
-}
-
+#header-container { border-bottom: 5px solid #B1983B; }
 
 ::-moz-selection {
-	background: #937B3A;
+	background: #B1983B;
 	color: #fff;
 	text-shadow: none;
 }
 ::selection {
-	background: #937B3A;
+	background: #B1983B;
 	color: #fff;
 	text-shadow: none;
 }
 
-code {
-	color:#937B3A;
-}
+code { color: #B1983B; }
 
-#main button, .loginBloc button,.button,.readUnreadButton {
-	background-color:#937B3A;
-}
+#main button, .loginBloc button,.button,.readUnreadButton { background-color: #B1983B; }
 
-#main aside a.unreadForFolder,#main aside a.readFolder {
-	background-color:#937B3A;
-}
+#main aside a.unreadForFolder,#main aside a.readFolder { background-color: #B1983B; }
 
-#main article div.articleContent .enclosure {
-	color:#937B3A;
-}
+#main article div.articleContent .enclosure { color: #B1983B; }
 
-#main article div.articleContent .enclosure a {	
-	color:#937B3A;
-}
+#main article div.articleContent .enclosure a {	color: #B1983B; }
 
-#main article section.eventSelected, .settings article > section {
-	border-top: 3px solid #937B3A;
-}
+#main article section.eventSelected, .settings article > section { border-top: 3px solid #B1983B; }
 
-#main article section a, #main article a {
-	color:#937B3A;
-}
+#main article section a, #main article a { color: #B1983B; }
 
 #main article section.eventHightLighted h2.articleTitle a, #main article section h2.articleTitle a , .preferenceBloc h3 {
-    color: #999999;
+	color: #AAA;
 }
  
 #main article div.articleContent {
-margin: 10px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
+    color: #AAA;
 }
 
-#main article section a:hover, #main article a:hover {
-color: #FFCC46;
-}
+#main article section a:hover, #main article a:hover { color: #CFB53B; }
 
-#main article a.goTopButton {
-    background-color: #937B3A;
-}
+#main article a.goTopButton { background-color: #B1983B; }
 
-#main article header.articleHead {
-    background-color: #464646;
-}
+#main article header.articleHead { background-color: #464646; }
 
-#main button, .loginBloc button, .button, .readUnreadButton {
-	background-color: #937B3A;
-}
-.manageBloc {
-	border: solid 3px #937B3A;
-}
+#main button, .loginBloc button, .button, .readUnreadButton { background-color: #B1983B; }
+
+.manageBloc { border: solid 3px #B1983B; }
+
+.preferenceBloc h3 { color:#B1983B; }
 
 #main article section.eventSelected, .settings article > section {
-    border-top: 3px solid #937B3A;
-	color: #999;
+    border-top: 3px solid #B1983B;
+    color: #AAA;
 }
 
 #main article section.eventHightLighted {
@@ -113,31 +87,23 @@ color: #FFCC46;
 
 }
 
-#main article section.eventRead, #main article section.eventHightLighted.eventRead {
-    background-color: #333;
-}
+#main article section.eventRead, #main article section.eventHightLighted.eventRead { background-color: #333; }
+
 #main article section.eventHightLighted h2.articleTitle, #main article section h2.articleTitle, .preferenceBloc h3 {
 	color: #aaaaaa;
 }
 
-.sync a {
-	color:#937B3A;
-}
+.underlink { color: #AAA; }
 
-.social_group {
-	background-color: #937B3A;
-}
-.social_gdiv {
-	background-color: #937B3A;
-}
-.fleaditLaterButton {
-	background-color: #937B3A;
-}
+.sync a { color: #B1983B; }
 
-.FS_toggleEventContent_Button {
-    background-color: #937B3A;
-}
+.social_group { background-color: #B1983B; }
 
-.cacheListFeed_divbut, #cacheListFeed_divbut_return {
-	cursor:pointer;
-}
+.social_gdiv { background-color: #B1983B; }
+
+.fleaditLaterButton { background-color: #B1983B; }
+
+.FS_toggleEventContent_Button { background-color: #B1983B; }
+
+.cacheListFeed_divbut, #cacheListFeed_divbut_return { cursor:pointer; }
+
