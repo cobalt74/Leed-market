@@ -4,7 +4,7 @@
 @author Forty-Six <Forty-Six>
 @link https://github.com/Forty-Six
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 0.2
+@version 0.3
 @description Ce plugin ajoute un bouton à coté du titre de chaque événement pour en afficher ou non le contenu
 */
 
@@ -15,7 +15,7 @@ function FS_toggleEventContent_AddButton(&$event) {
         $config->getAll();
 
 	if ($config->get('articleDisplayContent') == '1') {
-		echo '<div onClick="javascript:FS_toggleEventContent(\''.$event->getId().'\');" class="pointer FS_toggleEventContent_Button FS_rightSpace" alt="Toggle the content" title="Toggle the content" id="FS_toggleEventContent_Button_'.$event->getId().'">Toggle on</div>';
+		echo '<div onClick="FS_toggleEventContent(\''.$event->getId().'\');" class="pointer FS_toggleEventContent_Button FS_rightSpace" alt="Toggle the content" title="Toggle the content" id="FS_toggleEventContent_Button_'.$event->getId().'">Toggle on</div>';
 	}
 }
 
