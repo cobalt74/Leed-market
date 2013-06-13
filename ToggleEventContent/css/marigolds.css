@@ -12,6 +12,10 @@
 	float: right;
 }
 
+.FS_toggleEventContent_Button:hover {
+	background-color: #d44dd4;
+}
+
 .FS_rightSpace {
 	margin-right: 5px;
 }
