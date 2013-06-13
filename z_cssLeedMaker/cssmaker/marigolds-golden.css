@@ -50,7 +50,10 @@ nav a:hover{
 	text-shadow: none;
 }
 
-code { background-color: #B1983B; color: #FFFFFF; }
+code {
+	background-color: #B1983B;
+	color: #FFFFFF;
+}
 
 #main button, .loginBloc button,.button,.readUnreadButton {
 	background-color: #B1983B;
@@ -62,6 +65,9 @@ code { background-color: #B1983B; color: #FFFFFF; }
 
 #main article div.articleContent .enclosure {
 	color: #B1983B;
+}
+#main article div.articleContent .enclosure h1 {
+	color: #CFB53B;
 }
 
 #main article div.articleContent .enclosure a {	
@@ -80,6 +86,9 @@ code { background-color: #B1983B; color: #FFFFFF; }
 	color: #aaaaaa;
 }
 
+#main article section.eventHightLighted h2.articleTitle a:hover, #main article section h2.articleTitle a:hover {
+	color: #CFB53B;
+}
 .preferenceBloc h3 { color: #B1983B; }
  
 #main article div.articleContent {
@@ -139,6 +148,10 @@ code { background-color: #B1983B; color: #FFFFFF; }
 
 .FS_toggleEventContent_Button {
 	background-color: #B1983B;
+}
+
+.FS_toggleEventContent_Button:hover {
+	background-color: #CFB53B;
 }
 
 .cacheListFeed_divbut, #cacheListFeed_divbut_return {
