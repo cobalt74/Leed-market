@@ -3,7 +3,7 @@ Plugin leedLogSync
 
 **leedLogSync** est un _Plugin_ pour [Leed](http://projet.idleman.fr/leed), un agrégateur libre de flux RSS.
 
-Le plugin permet l'affichage des logs de synchro du cron.
+Le plugin permet l'affichage des logs de synchro du cron.<br />
 Il liste les fichiers disponibles dans /logs/ et propose leurs visualisations.
 
 
@@ -16,5 +16,5 @@ Instructions
 Version
 =======
 
-v2.0.0  - liste des fichiers log disponibles.
-v1.0.0  - Développement Initial
+* v2.0.0  - liste des fichiers log disponibles.
+* v1.0.0  - Développement Initial

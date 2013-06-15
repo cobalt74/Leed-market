@@ -3,7 +3,7 @@ Plugin social
 
 **social** est un _Plugin_ pour [Leed](http://projet.idleman.fr/leed), un agrégateur libre de flux RSS.
 
-Le plugin Social permet de partager les news avec son réseau social préféré
+Le plugin Social permet de partager les news avec son réseau social préféré.<br />
 Voici pour l'instant la liste des réseaux et applications disponibles.
 - Twitter
 - Google+
@@ -25,10 +25,10 @@ Instructions
 Version
 =======
 
-v3.2.1  -  Correction Typo sur Twitter
-v3.2.0  -  Ajout d'un partage vers Instapper
-v3.1.0  -  ajout titre lors du partage du lien
-v3.0.0  -  Intégration de Shaarli, Delicious, Pocket / paramétrage possible des boutons souhaités ou non souhaités
-v2.3.0  -  MAJ pour affichage réduit sur Leed
-v1.1.0  -  Gestion des css lié à la version Leed
-v1.0.0  -  Développement Initial
+* v3.2.1  -  Correction Typo sur Twitter
+* v3.2.0  -  Ajout d'un partage vers Instapper
+* v3.1.0  -  ajout titre lors du partage du lien
+* v3.0.0  -  Intégration de Shaarli, Delicious, Pocket / paramétrage possible des boutons souhaités ou non souhaités
+* v2.3.0  -  MAJ pour affichage réduit sur Leed
+* v1.1.0  -  Gestion des css lié à la version Leed
+* v1.0.0  -  Développement Initial
