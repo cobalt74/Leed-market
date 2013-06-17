@@ -25,6 +25,7 @@ Instructions
 Version
 =======
 
+* v3.3.0  -  Ajout partage par E-mail
 * v3.2.1  -  Correction Typo sur Twitter
 * v3.2.0  -  Ajout d'un partage vers Instapper
 * v3.1.0  -  ajout titre lors du partage du lien
