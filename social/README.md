@@ -12,6 +12,7 @@ Voici pour l'instant la liste des réseaux et applications disponibles.
 - Shaarli
 - Pocket
 - Instapaper
+- E-mail
 
 Je reste à dispo sur le GitHub du projet si vous souhaitez ajouter un réseau social connu ou une application libre intéressante.
 
