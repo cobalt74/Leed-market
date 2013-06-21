@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 2.1.0
+@version 3.0.0
 @description Pour être toujours à jour avec Leed et ces plugins. Ce plugin récupère le zip du projet GIT et le dezippe directement sur votre environnement
 */
 
@@ -132,8 +132,9 @@ function plugin_leedUpdateSource_AddForm(){
 	$configurationManager = new Configuration();
 	$configurationManager->getAll();
 	
+	$message = plugin_leedUpdateSource_message('plugin_leedUpdateSource_source');
 	echo '<section id="leedUpdateSource" name="leedUpdateSource" class="leedUpdateSource">
-			<h2>Mettre à jour Leed</h2>
+			<h2>Mettre à jour Leed</h2>'.$message.'
 			<li>Récupération des sources (zip) sur le dépôt Git (sources de développement)</li>
 			<li>Dézippage sur votre installation</li>
 			<li>Simple et rapide ! :) </li>
@@ -158,9 +159,18 @@ function plugin_leedUpdateSource_AddForm(){
 			';
 	if(isset($_POST['plugin_leedUpdateSource_source'])){
 		$configurationManager->put('plugin_leedUpdateSource_source',$_POST['plugin_leedUpdateSource_source']);
+
+		// recherche du numéro de version et enregistrement pour pouvoir tester si une nouvelle version est sortie.
+		$tabRepo = explode('/', $configurationManager->get('plugin_leedUpdateSource_source'));
+		$branche = explode ('.',$tabRepo[6]);
+		$commit = plugin_leedUpdateSourceCheckVersion($tabRepo[3],$tabRepo[4],$branche[0] );
+		$configurationManager->put('plugin_leedUpdateSource_source_commit',$commit);
+
 		plugin_leedUpdateSource();
 	}
-	echo '	<h2>Mettre à jour les plugins de Leed</h2>
+	
+	$messagePlugin = plugin_leedUpdateSource_message ('plugin_leedUpdateSource_sourcePlugin');
+	echo '	<h2>Mettre à jour les plugins de Leed</h2>'.$messagePlugin.'
 			<li>Récupération des sources (zip) sur le dépôt Git (sources de développement)</li>
 			<br />
 			<b>Attention :</b> ce plugin est utilisé afin de récupérer les corrections de bug.
@@ -180,6 +190,13 @@ function plugin_leedUpdateSource_AddForm(){
 			';
     if(isset($_POST['plugin_leedUpdateSource_sourcePlugin'])){
 		$configurationManager->put('plugin_leedUpdateSource_sourcePlugin',$_POST['plugin_leedUpdateSource_sourcePlugin']);
+		
+		// recherche du numéro de version et enregistrement pour pouvoir tester si une nouvelle version est sortie.
+		$tabRepo = explode('/', $configurationManager->get('plugin_leedUpdateSource_sourcePlugin'));
+		$branche = explode ('.',$tabRepo[6]);
+		$commit = plugin_leedUpdateSourceCheckVersion($tabRepo[3],$tabRepo[4],$branche[0] );
+		$configurationManager->put('plugin_leedUpdateSource_sourcePlugin_commit',$commit);
+		
 		plugin_leedUpdateSourcePlugin();
 	}
 	echo '</section>';
@@ -231,6 +248,66 @@ function plugin_leedUpdateSourcePlugin(){
 	echo '<b>Toutes les opérations sont terminées. Vos plugins sont à jour</b>';
 }
 
+function plugin_leedUpdateSourceCheckVersion($user, $repo, $branche=''){
+
+	if ($branche!='') $branche = '/'.$branche;
+	// initialisation de la session curl
+	$curl = curl_init();
+
+	// configuration des options
+	curl_setopt($curl, CURLOPT_URL, 'https://api.github.com/repos/'.$user.'/'.$repo.'/commits'.$branche);
+	curl_setopt($curl, CURLOPT_HEADER, 0);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($curl, CURLOPT_SSLVERSION,3); 
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); 
+	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2); 
+	curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)'); 
+
+	// exécution de la session
+	$result = curl_exec($curl);
+	if( ! $result = curl_exec($curl)) 
+	{ 
+	   trigger_error(curl_error($curl)); 
+	}
+
+	//echo($result);
+	// fermeture des ressources
+	curl_close($curl);
+	
+	//$str = '{ "Ip" : "80.214.249.19", "Status" : "OK", "CountryCode" : "FR", "CountryName" : "France", "RegionCode" : "A8", "RegionName" : "Ile-de-France", "City" : "Vélizy-villacoublay", "ZipPostalCode" : "", "Latitude" : "48.8", "Longitude" : "2.1833" }';
+	$result = trim($result, '[{} ]');
+	$array = explode(',', $result);
+
+	$commit = explode(':', $array[0]);
+//	$dateCommit = explode(':', $array[3]);
+
+//	print_r($commit);
+//	print_r($dateCommit);
+	$return = trim($commit[1], '"');
+//	echo $return;
+	return $return;
+}
+
+function plugin_leedUpdateSource_message ($var) {
+	$configurationManager = new Configuration();
+	$configurationManager->getAll();
+	
+	// recherche du numéro de version et enregistrement pour pouvoir tester si une nouvelle version est sortie.
+	$tabRepo = explode('/', $configurationManager->get($var));
+	$branche = explode ('.',$tabRepo[6]);
+	$commit = plugin_leedUpdateSourceCheckVersion($tabRepo[3],$tabRepo[4],$branche[0] );
+	
+	$result = ($configurationManager->get($var.'_commit')!=$commit?'<div class="messageAlert">Une nouvelle version est disponible (<a href=https://github.com/'.$tabRepo[3].'/'.$tabRepo[4].'/commits/'.$branche[0].'>'.$tabRepo[3].'/'.$tabRepo[4].'/'.$branche[0].'</a>) </div>':'');
+	return $result;
+	
+}
+
+function plugin_leedUpdateSource_messageAccueil() {
+	$message = plugin_leedUpdateSource_message('plugin_leedUpdateSource_source');
+	if ($message=='') $message = plugin_leedUpdateSource_message('plugin_leedUpdateSource_sourcePlugin');
+	($message==''?$return = '':$return = '<aside>Une mise à jour est disponible - <a href="settings.php#leedUpdateSource">Go !!!</a></aside>');
+	echo $return;
+}
 
 $myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
 if($myUser!=false) {
@@ -238,6 +315,7 @@ if($myUser!=false) {
 		// Ajout de la fonction au Hook situé avant l'affichage des évenements
 		Plugin::addHook("setting_post_link", "plugin_leedUpdateSource_AddLink");
 		Plugin::addHook("setting_post_section", "plugin_leedUpdateSource_AddForm");
+		Plugin::addHook("menu_post_folder_menu","plugin_leedUpdateSource_messageAccueil");
 	}
 }
 
