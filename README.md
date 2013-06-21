@@ -20,6 +20,7 @@ wiki plugins : http://projet.idleman.fr/leed/?page=Plugins
 * fleexed			- repositionne les menus en position fixed
 * instapaper		- affiche les évenements directement sur instapaper lors du clic sur le titre d'un évenement
 * leedBrowser		- Lors du clic sur un lien d'événement, le site est ouvert dans un navigateur discret avec des boutons : marquer comme lu, favoriser...
+* leedHomeLink		- Ajoute un menu surgissant afin d'accéder directement à des liens externes (blog, applications)
 * leedLogSync		- Affichage du dernier fichier de Log généré par la tache planifiée de synchronisation
 * leedUpdateSource	- Leed toujours à jour.
 * oneSync			- ajoute un bouton à coté de chaque flux afin de synchroniser uniquement ce flux

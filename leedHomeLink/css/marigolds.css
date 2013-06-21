@@ -1,0 +1,42 @@
+.popmenu_title {
+	color: #8A4354; 
+	text-decoration: none;
+	position:fixed;
+	left:0px;
+	top:0px;
+	margin-top:10px;
+    margin-left:-15px;
+	padding: 5px 10px;
+
+	z-index:999;
+	background:#DADACB;
+	-webkit-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	-o-transform: rotate(90deg);
+	
+	border: 2px solid #958573;
+	border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px; 
+} 
+
+.popmenu{
+    margin-top:-7px;
+    margin-left:-5px;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    display:none;
+    background:#DADACB;
+    border: 2px solid #958573;
+    position:fixed;
+	left:0px;
+	top:10px;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px; 
+    z-index:1000; 
+}
+
+.popmenu a {color: #8A4354; }
+.popmenu a:hover {color: #999; }
+.more {color: #555; text-decoration: none;}
