@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 3.0.1
+@version 3.0.2
 @description Pour être toujours à jour avec Leed et ces plugins. Ce plugin récupère le zip du projet GIT et le dezippe directement sur votre environnement
 */
 
@@ -164,7 +164,7 @@ function plugin_leedUpdateSource_AddForm(){
 		$tabRepo = explode('/', $configurationManager->get('plugin_leedUpdateSource_source'));
 		$branche = explode ('.',$tabRepo[6]);
 		$commit = plugin_leedUpdateSourceCheckVersion($tabRepo[3],$tabRepo[4],$branche[0] );
-		$configurationManager->put('plugin_leedUpdateSource_source_commit',$commit);
+		if  (substr($commit,0,3) != 'API') $configurationManager->put('plugin_leedUpdateSource_source_commit',$commit);
 
 		plugin_leedUpdateSource();
 	}
@@ -195,7 +195,7 @@ function plugin_leedUpdateSource_AddForm(){
 		$tabRepo = explode('/', $configurationManager->get('plugin_leedUpdateSource_sourcePlugin'));
 		$branche = explode ('.',$tabRepo[6]);
 		$commit = plugin_leedUpdateSourceCheckVersion($tabRepo[3],$tabRepo[4],$branche[0] );
-		$configurationManager->put('plugin_leedUpdateSource_sourcePlugin_commit',$commit);
+		if  (substr($commit,0,3) != 'API') $configurationManager->put('plugin_leedUpdateSource_sourcePlugin_commit',$commit);
 		
 		plugin_leedUpdateSourcePlugin();
 	}
@@ -296,20 +296,33 @@ function plugin_leedUpdateSource_message ($var) {
 	$tabRepo = explode('/', $configurationManager->get($var));
 	$branche = explode ('.',$tabRepo[6]);
 	$commit = plugin_leedUpdateSourceCheckVersion($tabRepo[3],$tabRepo[4],$branche[0] );
-	
-	$return = '';
-	if (($configurationManager->get($var.'_commit')!=$commit) && (substr($commit,0,3) != 'API')) {
-		$return = '<div class="messageAlert">Une nouvelle version est disponible (<a href=https://github.com/'.$tabRepo[3].'/'.$tabRepo[4].'/commits/'.$branche[0].'>'.$tabRepo[3].'/'.$tabRepo[4].'/'.$branche[0].'</a>) </div>';
+
+	$result = '';
+	if ($configurationManager->get($var.'_commit')!=$commit) {
+		if  (substr($commit,0,3) != 'API') {
+			$result = '<div class="messageAlert">Une nouvelle version est disponible (<a href=https://github.com/'.$tabRepo[3].'/'.$tabRepo[4].'/commits/'.$branche[0].'>'.$tabRepo[3].'/'.$tabRepo[4].'/'.$branche[0].'</a>) </div>';
+		} else {
+			$result = '<div class="messageAlert">API GitHub non disponible, impossible de vérifier la dernière version<br/>'.$commit.'</div>';
+		}
 	}
 		
 	return $result;
 }
 
 function plugin_leedUpdateSource_messageAccueil() {
-	$message = plugin_leedUpdateSource_message('plugin_leedUpdateSource_source');
-	if ($message=='') $message = plugin_leedUpdateSource_message('plugin_leedUpdateSource_sourcePlugin');
-	($message==''?$return = '':$return = '<aside>Une mise à jour est disponible - <a href="settings.php#leedUpdateSource">Go !!!</a></aside>');
-	echo $return;
+	$configurationManager = new Configuration();
+	$configurationManager->getAll();
+	
+	// afin de ne pas intéroger cinquante fois par jour et bouffer du temps de réponse, une recherche par jour est suffisante.
+	if ($configurationManager->get('plugin_leedUpdateSource_date')==date('Ymd'))  {
+		echo '';
+	} else {
+		$configurationManager->put('plugin_leedUpdateSource_date', date('Ymd'));
+		$message = plugin_leedUpdateSource_message('plugin_leedUpdateSource_source');
+		if ($message=='') $message = plugin_leedUpdateSource_message('plugin_leedUpdateSource_sourcePlugin');
+		($message==''?$return = '':$return = '<aside>Une mise à jour est disponible - <a href="settings.php#leedUpdateSource">Go !!!</a></aside>');
+		echo $return;
+	}
 }
 
 $myUser = (isset($_SESSION['currentUser'])?unserialize($_SESSION['currentUser']):false);
