@@ -15,6 +15,7 @@ Instructions
 Version
 =======
 
+* v3.0.2  - ne faire la recherche d'alerte qu'une fois par jour
 * v3.0.1  - prise en compte d'un retour d'erreur de l'API GitHub
 * v3.0.0  - alerte sur les versions disponibles sur GitHub
 * v2.1.0  - enregistrement de la sélection des sources (Leed & plugins) / ajout de la branche de dév.
