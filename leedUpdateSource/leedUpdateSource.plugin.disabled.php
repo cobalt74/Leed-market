@@ -4,7 +4,7 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 3.0.0
+@version 3.0.1
 @description Pour être toujours à jour avec Leed et ces plugins. Ce plugin récupère le zip du projet GIT et le dezippe directement sur votre environnement
 */
 
@@ -297,9 +297,12 @@ function plugin_leedUpdateSource_message ($var) {
 	$branche = explode ('.',$tabRepo[6]);
 	$commit = plugin_leedUpdateSourceCheckVersion($tabRepo[3],$tabRepo[4],$branche[0] );
 	
-	$result = ($configurationManager->get($var.'_commit')!=$commit?'<div class="messageAlert">Une nouvelle version est disponible (<a href=https://github.com/'.$tabRepo[3].'/'.$tabRepo[4].'/commits/'.$branche[0].'>'.$tabRepo[3].'/'.$tabRepo[4].'/'.$branche[0].'</a>) </div>':'');
+	$return = '';
+	if (($configurationManager->get($var.'_commit')!=$commit) && (substr($commit,0,3) != 'API')) {
+		$return = '<div class="messageAlert">Une nouvelle version est disponible (<a href=https://github.com/'.$tabRepo[3].'/'.$tabRepo[4].'/commits/'.$branche[0].'>'.$tabRepo[3].'/'.$tabRepo[4].'/'.$branche[0].'</a>) </div>';
+	}
+		
 	return $result;
-	
 }
 
 function plugin_leedUpdateSource_messageAccueil() {
