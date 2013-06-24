@@ -62,7 +62,7 @@ $.ajax({
 	url: './action.php?action=getCacheListFeed',
 	type: 'post',
 	success : function(data) {
-		cacheListFeed_init(parseInt(data));
+		if($('.index').length) { cacheListFeed_init(parseInt(data)); }
 	}
 });
 
