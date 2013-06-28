@@ -29,6 +29,7 @@ wiki plugins : http://projet.idleman.fr/leed/?page=Plugins
 * social			- partage les articles avec son réseau social préféré (Facebook / Tweeter / Google+)
 * squelette			- plugin d'exemple pour les créateurs de nouveaux plugins Leed
 * themeswitcher		- changer de thème via la page de gestion
+* ToggleEventContent    - ajoute un bouton permettant de cacher/afficher le contenu d'un événement
 * z_cssLeedMaker    - Ce plugin permet de contruire son propre thème en ajoutant du css.
 
 
