@@ -12,6 +12,7 @@ wiki plugins : http://projet.idleman.fr/leed/?page=Plugins
 * connectez vous sur votre Leed et dans "Gestion"=> "Plugins Disponibles", activer les plugins souhaités
 
 <b>Liste des plugins officiels de Leed</b>
+* adblock           - Ajoute la possibilité de supprimer les contenus flash et/ou les images dans les événements (_via_ une blacklist ou une whitelist) - Voir le README dans le dossier adblock pour plus d'infos.
 * cacheListFeed		- cacher la liste des feed afin de lire les articles en plein écran.
 * DeleteTheCache	- suppression physique des fichiers mis en cache par Leed
 * favicon_IOS		- ajoute une jolie icone sur IOS
