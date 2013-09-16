@@ -1,0 +1,3 @@
+[submodule "epub/PHPePub"]
+	path = epub/PHPePub
+	url = git@github.com:Grandt/PHPePub.git
