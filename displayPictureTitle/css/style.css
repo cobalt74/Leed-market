@@ -1,0 +1,6 @@
+#main article div.articleContent div.img-title
+{
+	border: dashed #999 1px;
+	background-color: #ddd;
+	color: #777;
+}
