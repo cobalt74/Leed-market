@@ -4,8 +4,8 @@
 @author Cobalt74 <cobalt74@gmail.com>
 @link http://www.cobestran.com
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 3.3.0
-@description Le plugin Social permet de partager les news avec son réseau social préféré (Twitter, Google+, Facebook, Delicious, Shaarli, Pocket, Instapaper)
+@version 3.4.0
+@description Le plugin Social permet de partager les news avec son réseau social préféré (Twitter, Google+, Facebook, Delicious, Shaarli, Pocket, Instapaper, Mail, LinkedIn)
 */
 
 function social_plugin_AddButton(&$event){
@@ -32,6 +32,7 @@ function social_plugin_AddButton(&$event){
             '.($configurationManager->get('plugin_social_pocket')?'<div onclick="openURL(\'https://getpocket.com/edit?url='.rawurlencode($link).'&title='.rawurlencode($title).'\');" class="social_div">Pocket</div>':'').'
             '.($configurationManager->get('plugin_social_instapaper')?'<div onclick="openURL(\'http://www.instapaper.com/text?u='.rawurlencode($link).'\');" class="social_div">Instapaper</div>':'').'
             '.($configurationManager->get('plugin_social_mail')?'<div onclick="openURL(\'mailto:?subject='.rawurlencode($title).'&body='.rawurlencode($link).'\');" class="social_div">E-mail</div>':'').'
+            '.($configurationManager->get('plugin_social_linkedin')?'<div onclick="openURL(\'http://www.linkedin.com/shareArticle?url='.rawurlencode($link).'&title='.rawurlencode($title).'\');" class="social_div">LinkedIn</div>':'').'
         </div>';
 }
 
@@ -84,6 +85,11 @@ function social_plugin_setting_bloc(&$myUser){
 		<input type="radio" '.($configurationManager->get('plugin_social_mail')?'checked="checked"':'').' value=1 id="socialMailYes" name="socialMail"><label>Oui</label>
 		<input type="radio" '.($configurationManager->get('plugin_social_mail')?'':'checked="checked"').' value=0 id="socialMailNo" name="socialMail"><label>Non</label>
 		</p>
+		<p>
+		<label for="social_linkedin">Partage sur LinkedIn :</label>
+		<input type="radio" '.($configurationManager->get('plugin_social_linkedin')?'checked="checked"':'').' value=1 id="socialLinkedInYes" name="socialLinkedIn"><label>Oui</label>
+		<input type="radio" '.($configurationManager->get('plugin_social_linkedin')?'':'checked="checked"').' value=0 id="socialLinkedInNo" name="socialLinkedIn"><label>Non</label>
+		</p>
 		</section>
 
 		<section class="preferenceBloc">
@@ -122,6 +128,7 @@ function social_plugin_update($_){
 		$configurationManager->put('plugin_social_pocket',$_['socialPocket']);
 		$configurationManager->put('plugin_social_instapaper',$_['socialInstapaper']);
 		$configurationManager->put('plugin_social_mail',$_['socialMail']);
+		$configurationManager->put('plugin_social_linkedin',$_['socialLinkedIn']);
 		$_SESSION['configuration'] = null;
 
 		header('location: settings.php#socialBloc');

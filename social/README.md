@@ -13,6 +13,7 @@ Voici pour l'instant la liste des réseaux et applications disponibles.
 - Pocket
 - Instapaper
 - E-mail
+- Linkedin
 
 Je reste à dispo sur le GitHub du projet si vous souhaitez ajouter un réseau social connu ou une application libre intéressante.
 
@@ -26,6 +27,7 @@ Instructions
 Version
 =======
 
+* v3.4.0  -  Ajout partage sur Linkedin
 * v3.3.0  -  Ajout partage par E-mail
 * v3.2.1  -  Correction Typo sur Twitter
 * v3.2.0  -  Ajout d'un partage vers Instapper
