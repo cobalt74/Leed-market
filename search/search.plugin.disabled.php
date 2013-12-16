@@ -25,7 +25,7 @@ function search_plugin_menuForm(){
 }
 
 // affichage des option de recherche et du formulaire
-function search_plugin_AddForm(){
+function search_plugin_AddForm(&$myUser){
 	echo '<section id="search" name="search" class="search">
 			<h2>Rechercher des articles</h2>
 			<form action="settings.php#search" method="post">
@@ -57,7 +57,7 @@ function search_plugin_AddForm(){
 			</form>';
 	if(isset($_POST['plugin_search'])){
 		if(strlen($_POST['plugin_search'])>=3){
-			search_plugin_recherche();
+			search_plugin_recherche($myUser);
 		}else{ echo 'Saisir au moins 3 caractères pour lancer la recherche'; }
 	}
 	echo '</section>';
@@ -65,9 +65,9 @@ function search_plugin_AddForm(){
 
 
 // foction de recherche des articles avec affichage du résultat.
-function search_plugin_recherche(){
+function search_plugin_recherche(&$myUser){
 	$requete = 'SELECT id,title,guid,content,description,link,pubdate,unread, favorite
-                FROM '.MYSQL_PREFIX.'event 
+                FROM '.$myUser->getPrefixDatabase().'event
                 WHERE title like \'%'.$_POST['plugin_search'].'%\'';
 	if (isset($_POST['search_option']) && $_POST['search_option']=="1"){
 		$requete = $requete.' OR content like \'%'.$_POST['plugin_search'].'%\'';
